@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Title</title>
+</h:head>
+<h:body>
+	<h1>Inicio con Maven+MyBatis+Spring+JSF</h1>
+	<h3>Clientes DB</h3>
+	<h:form id="form">
+		<p:dataTable id="clientes" var="cli"
+			value="#{clienteBean.getClienteList()}" editable="false"
+			style="margin-bottom:20px">
+			<f:facet name="header">
+				Edición de clientes
+			</f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{cli.id}" />
+			</p:column>
+
+			<p:column headerText="Nombre">
+				<h:outputText value="#{cli.nombre}" />
+			</p:column>
+
+			<p:column headerText="Dirección">
+				<h:outputText value="#{cli.direccion}" />
+			</p:column>
+
+			<p:column headerText="Contacto">
+				<h:outputText value="#{cli.contacto}" />
+			</p:column>
+
+			<p:column headerText="Teléfono">
+				<h:outputText value="#{cli.telefono}" />
+			</p:column>
+			
+			<p:column headerText="Email">
+				<h:outputText value="#{cli.email}" />
+			</p:column>
+
+			<p:column headerText="RFC">
+				<h:outputText value="#{cli.rfc}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
