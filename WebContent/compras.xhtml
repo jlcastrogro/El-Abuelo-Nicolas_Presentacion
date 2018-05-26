@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Equipo 5</title>
+</h:head>
+<h:body>
+	<h1>El Abuelo Nicolás</h1>
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+		<p:dataTable id="compras" var="compr"
+			value="#{comprasBean.getComprasList()}" editable="true"
+			style="margin-bottom:20px">
+			<f:facet name="header">
+				Proveedores
+			</f:facet>
+			<p:ajax event="rowEdit" listener="#{comprasBean.onRowEdit}"
+				update=":form:msgs" />
+			<p:ajax event="rowEditCancel" listener="#{comprasBean.onRowCancel}"
+				update=":form:msgs" />
+
+			<p:column headerText="Id">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{compr.id}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText id="comprasInput" value="#{compr.id}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Id Proveedor">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{compr.idproveedor}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{compr.idproveedor}" style="width:100%"
+							label="IdProveedor" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Id Lista Compra">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{compr.idlistacompra}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{compr.idlistacompra}" style="width:100%"
+							label="IdListaCompra" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Fecha">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{compr.fecha}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{compr.fecha}" style="width:100%"
+							label="Fecha" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Precio Total">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{compr.preciototal}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{compr.preciototal}" style="width:100%"
+							label="Precio Total" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column style="width:32px">
+				<p:rowEditor />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
