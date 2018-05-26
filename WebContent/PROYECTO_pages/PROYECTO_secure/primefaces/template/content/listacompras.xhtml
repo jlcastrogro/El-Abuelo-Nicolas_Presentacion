@@ -3,40 +3,40 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Equipo 5</title>
-</h:head>
-<h:body>
-	<h1>El Abuelo Nicolás</h1>
-	<h:form id="form">
-		<p:growl id="msgs" showDetail="true" />
-		<p:dataTable id="listacompra" var="listacmpr"
-			value="#{listacomprasBean.getListacomprasList()}" editable="true"
-			style="margin-bottom:20px">
-			<f:facet name="header">
-				Proveedores
+
+<ui:composition
+	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable id="listacompras" var="listacmpr"
+				value="#{listacomprasBean.getListacomprasList()}" editable="true"
+				style="margin-bottom:20px">
+				<f:facet name="header">
+				Clientes
 			</f:facet>
-			<p:ajax event="rowEdit" listener="#{listacomprasBean.onRowEdit}"
-				update=":form:msgs" />
-			<p:ajax event="rowEditCancel" listener="#{listacomprasBean.onRowCancel}"
-				update=":form:msgs" />
+				<p:ajax event="rowEdit" listener="#{listacomprasBean.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{listacomprasBean.onRowCancel}"
+					update=":form:msgs" />
 
-			<p:column headerText="Id">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{listacmpr.id}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText id="listacomprasInput" value="#{listacmpr.id}"
-							style="width:100%" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Id">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{listacmpr.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText id="listacomprasInput" value="#{listacmpr.id}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="Id Producto">
+<p:column headerText="Id Producto">
 				<p:cellEditor>
 					<f:facet name="output">
 						<h:outputText value="#{listacmpr.idproducto}" />
@@ -83,11 +83,12 @@
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+		</h:form>
 
-			<p:column style="width:32px">
-				<p:rowEditor />
-			</p:column>
-		</p:dataTable>
-	</h:form>
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>
