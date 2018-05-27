@@ -4,9 +4,11 @@
 
 	<mappers>
 		<mapper resource="elabuelonicolas/bd/mappers/ClienteMapper.xml" />
+		<mapper resource="elabuelonicolas/bd/mappers/ComprasMapper.xml" />
+		<mapper resource="elabuelonicolas/bd/mappers/ListacomprasMapper.xml" />
+		<mapper resource="elabuelonicolas/bd/mappers/ListaventasMapper.xml" />
 		<mapper resource="elabuelonicolas/bd/mappers/ProveedorMapper.xml" />
 		<mapper resource="elabuelonicolas/bd/mappers/VentasMapper.xml" />
-		<mapper resource="elabuelonicolas/bd/mappers/ListaventasMapper.xml" />
 	</mappers>
 
 </configuration>
