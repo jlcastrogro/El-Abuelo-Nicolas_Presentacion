@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition
+	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable id="ventas" var="ven"
+				value="#{ventasBean.getVentasList()}" editable="true"
+				style="margin-bottom:20px">
+				<f:facet name="header">
+					Ventas
+				</f:facet>
+				<p:ajax event="rowEdit" listener="#{ventasBean.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{ventasBean.onRowCancel}"
+					update=":form:msgs" />
+
+				<p:column headerText="Id">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText id="ventasInput" value="#{ven.id}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+				<p:column headerText="Id Cliente">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.idcliente}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{ven.idcliente}" style="width:100%"
+								label="IdCliente" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+				<p:column headerText="Id Lista Venta">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.idlistaventa}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{ven.idlistaventa}" style="width:100%"
+								label="IdListaVenta" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Fecha">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.fecha}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{ven.fecha}" style="width:100%"
+								label="Fecha" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Precio Total">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.preciototal}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{ven.preciototal}" style="width:100%"
+								label="Precio Total" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
