@@ -14,14 +14,14 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="listaventas" var="lisven"
-				value="#{listaventaBean.getListaventasList()}" editable="true"
+				value="#{listaventasBean.getListaventasList()}" editable="true"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 					Lista de Ventas
 				</f:facet>
-				<p:ajax event="rowEdit" listener="#{listaventaBean.onRowEdit}"
+				<p:ajax event="rowEdit" listener="#{listaventasBean.onRowEdit}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{listaventaBean.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{listaventasBean.onRowCancel}"
 					update=":form:msgs" />
 
 				<p:column headerText="Id">
@@ -75,10 +75,10 @@
 			<p:column headerText="Id Compra">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{lisven.idcompra}" />
+						<h:outputText value="#{lisven.idventa}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{lisven.idcompra}" style="width:100%"
+						<h:inputText value="#{lisven.idventa}" style="width:100%"
 							label="IdCompra" />
 					</f:facet>
 				</p:cellEditor>

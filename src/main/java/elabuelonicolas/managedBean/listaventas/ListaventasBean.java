@@ -15,8 +15,8 @@ public class ListaventasBean {
 	@Inject
 	ListaventasService listaventasService;
 	private List<Listaventas> listaventasList;
-
-	public List<Listaventas> getVentasList() {
+	
+	public List<Listaventas> getListaventasList() {
 		if (listaventasList == null)
 			setListaventasList(listaventasService.findAll());
 
