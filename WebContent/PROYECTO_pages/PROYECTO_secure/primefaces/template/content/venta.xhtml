@@ -13,15 +13,15 @@
 	<ui:define name="content">
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="ventas" var="ven"
-				value="#{ventasBean.getVentasList()}" editable="true"
+			<p:dataTable id="venta" var="ven"
+				value="#{ventaBean.getVentaList()}" editable="true"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 					Ventas
 				</f:facet>
-				<p:ajax event="rowEdit" listener="#{ventasBean.onRowEdit}"
+				<p:ajax event="rowEdit" listener="#{ventaBean.onRowEdit}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{ventasBean.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{ventaBean.onRowCancel}"
 					update=":form:msgs" />
 
 				<p:column headerText="Id">
@@ -77,10 +77,10 @@
 				<p:column headerText="Precio Total">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{ven.preciototal}" />
+							<h:outputText value="#{ven.total}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{ven.preciototal}" style="width:100%"
+							<h:inputText value="#{ven.total}" style="width:100%"
 								label="Precio Total" />
 						</f:facet>
 					</p:cellEditor>

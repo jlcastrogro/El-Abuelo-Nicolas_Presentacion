@@ -1,4 +1,4 @@
-package elabuelonicolas.managedBean.listacompras;
+package elabuelonicolas.managedBean.listacompra;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -7,28 +7,28 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
-import elabuelonicolas.bd.domain.Listacompras;
-import elabuelonicolas.service.listacompras.ListacomprasService;
+import elabuelonicolas.bd.domain.Listacompra;
+import elabuelonicolas.service.listacompra.ListacompraService;
 
 @Named
-public class ListacomprasBean {
+public class ListacompraBean {
 	@Inject
-	ListacomprasService listacomprasService;
-	private List<Listacompras> listacomprasList;
+	ListacompraService listacomprasService;
+	private List<Listacompra> listacomprasList;
 
-	public List<Listacompras> getListacomprasList() {
+	public List<Listacompra> getListacompraList() {
 		if (listacomprasList == null)
-			setListacomprasList(listacomprasService.findAll());
+			setListacompraList(listacomprasService.findAll());
 
 		return listacomprasList;
 	}
 
-	private void setListacomprasList(List<Listacompras> listacomprasList) {
+	private void setListacompraList(List<Listacompra> listacomprasList) {
 		this.listacomprasList = listacomprasList;
 	}
 
 	public void onRowEdit(RowEditEvent event) {
-		Listacompras listacompras = ((Listacompras) event.getObject());
+		Listacompra listacompras = ((Listacompra) event.getObject());
 		System.out.println("Datos de Lista de compras: " + listacompras.getId());
 		listacomprasService.update(listacompras);
 
@@ -39,7 +39,7 @@ public class ListacomprasBean {
 
 	public void onRowCancel(RowEditEvent event) {
 		FacesMessage msg = new FacesMessage("Edición cancelada",
-				((Listacompras) event.getObject()).getId().toString());
+				((Listacompra) event.getObject()).getId().toString());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 

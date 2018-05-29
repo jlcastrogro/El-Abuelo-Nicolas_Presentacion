@@ -1,4 +1,4 @@
-package elabuelonicolas.managedBean.compras;
+package elabuelonicolas.managedBean.venta;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -7,39 +7,39 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
-import elabuelonicolas.bd.domain.Compras;
-import elabuelonicolas.service.compras.ComprasService;
+import elabuelonicolas.bd.domain.Venta;
+import elabuelonicolas.service.venta.VentaService;
 
 @Named
-public class ComprasBean {
+public class VentaBean {
 	@Inject
-	ComprasService comprasService;
-	private List<Compras> comprasList;
+	VentaService ventasService;
+	private List<Venta> ventasList;
 
-	public List<Compras> getComprasList() {
-		if (comprasList == null)
-			setComprasList(comprasService.findAll());
+	public List<Venta> getVentaList() {
+		if (ventasList == null)
+			setVentaList(ventasService.findAll());
 
-		return comprasList;
+		return ventasList;
 	}
 
-	private void setComprasList(List<Compras> comprasList) {
-		this.comprasList = comprasList;
+	private void setVentaList(List<Venta> ventasList) {
+		this.ventasList = ventasList;
 	}
 
 	public void onRowEdit(RowEditEvent event) {
-		Compras compras = ((Compras) event.getObject());
-		System.out.println("Datos de Compras: " + compras.getId());
-		comprasService.update(compras);
+		Venta ventas = ((Venta) event.getObject());
+		System.out.println("Datos de Venta: " + ventas.getId());
+		ventasService.update(ventas);
 
-		FacesMessage msg = new FacesMessage("Compra editada", compras.getId()
+		FacesMessage msg = new FacesMessage("Venta editada", ventas.getId()
 				.toString());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public void onRowCancel(RowEditEvent event) {
 		FacesMessage msg = new FacesMessage("Edición cancelada",
-				((Compras) event.getObject()).getId().toString());
+				((Venta) event.getObject()).getId().toString());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
@@ -50,7 +50,7 @@ public class ComprasBean {
 		System.out.println("Verifica: " + newValue);
 
 		if (newValue != null && !newValue.equals(oldValue)) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Compra modificada", "Antes: " + oldValue + ", Ahora: "+ newValue);
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Venta modificada", "Antes: " + oldValue + ", Ahora: "+ newValue);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
