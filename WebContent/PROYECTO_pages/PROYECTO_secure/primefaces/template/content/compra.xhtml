@@ -13,76 +13,79 @@
 	<ui:define name="content">
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="listacompras" var="listacmpr"
-				value="#{listacomprasBean.getListacomprasList()}" editable="true"
+			<p:dataTable id="compra" var="compr"
+				value="#{compraBean.getCompraList()}" editable="true"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 				Clientes
 			</f:facet>
-				<p:ajax event="rowEdit" listener="#{listacomprasBean.onRowEdit}"
+				<p:ajax event="rowEdit" listener="#{compraBean.onRowEdit}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{listacomprasBean.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{compraBean.onRowCancel}"
 					update=":form:msgs" />
 
 				<p:column headerText="Id">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{listacmpr.id}" />
+							<h:outputText value="#{compr.id}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText id="listacomprasInput" value="#{listacmpr.id}"
+							<h:inputText id="compraInput" value="#{compr.id}"
 								style="width:100%" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-<p:column headerText="Id Producto">
+
+				<p:column headerText="Id Proveedor">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{listacmpr.idproducto}" />
+						<h:outputText value="#{compr.idproveedor}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{listacmpr.idproducto}" style="width:100%"
-							label="IdProducto" />
+						<h:inputText value="#{compr.idproveedor}" style="width:100%"
+							label="IdProveedor" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+				
+
+				<p:column headerText="Id Lista Compra">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{compr.idlistacompra}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{compr.idlistacompra}" style="width:100%"
+							label="IdListaCompra" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Cantidad">
+			<p:column headerText="Fecha">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{listacmpr.cantidad}" />
+						<h:outputText value="#{compr.fecha}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{listacmpr.cantidad}" style="width:100%"
-							label="Cantidad" />
+						<h:inputText value="#{compr.fecha}" style="width:100%"
+							label="Fecha" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Subtotal">
+			<p:column headerText="Precio Total">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{listacmpr.subtotal}" />
+						<h:outputText value="#{compr.total}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{listacmpr.subtotal}" style="width:100%"
-							label="Subtotal" />
+						<h:inputText value="#{compr.total}" style="width:100%"
+							label="Precio Total" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 
-			<p:column headerText="Id Compra">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{listacmpr.idcompra}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{listacmpr.idcompra}" style="width:100%"
-							label="IdCompra" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
 				<p:column style="width:32px">
 					<p:rowEditor />
 				</p:column>

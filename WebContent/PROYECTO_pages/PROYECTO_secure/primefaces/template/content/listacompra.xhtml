@@ -13,36 +13,36 @@
 	<ui:define name="content">
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="listaventas" var="lisven"
-				value="#{listaventasBean.getListaventasList()}" editable="true"
+			<p:dataTable id="listacompra" var="listacmpr"
+				value="#{listacompraBean.getListacompraList()}" editable="true"
 				style="margin-bottom:20px">
 				<f:facet name="header">
-					Lista de Ventas
-				</f:facet>
-				<p:ajax event="rowEdit" listener="#{listaventasBean.onRowEdit}"
+				Clientes
+			</f:facet>
+				<p:ajax event="rowEdit" listener="#{listacompraBean.onRowEdit}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{listaventasBean.onRowCancel}"
+				<p:ajax event="rowEditCancel" listener="#{listacompraBean.onRowCancel}"
 					update=":form:msgs" />
 
 				<p:column headerText="Id">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{lisven.id}" />
+							<h:outputText value="#{listacmpr.id}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText id="listaventasInput" value="#{lisven.id}"
+							<h:inputText id="listacompraInput" value="#{listacmpr.id}"
 								style="width:100%" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-			<p:column headerText="Id Producto">
+<p:column headerText="Id Producto">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{lisven.idproducto}" />
+						<h:outputText value="#{listacmpr.idproducto}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{lisven.idproducto}" style="width:100%"
+						<h:inputText value="#{listacmpr.idproducto}" style="width:100%"
 							label="IdProducto" />
 					</f:facet>
 				</p:cellEditor>
@@ -51,10 +51,10 @@
 			<p:column headerText="Cantidad">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{lisven.cantidad}" />
+						<h:outputText value="#{listacmpr.cantidad}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{lisven.cantidad}" style="width:100%"
+						<h:inputText value="#{listacmpr.cantidad}" style="width:100%"
 							label="Cantidad" />
 					</f:facet>
 				</p:cellEditor>
@@ -63,10 +63,10 @@
 			<p:column headerText="Subtotal">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{lisven.subtotal}" />
+						<h:outputText value="#{listacmpr.subtotal}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{lisven.subtotal}" style="width:100%"
+						<h:inputText value="#{listacmpr.subtotal}" style="width:100%"
 							label="Subtotal" />
 					</f:facet>
 				</p:cellEditor>
@@ -75,10 +75,10 @@
 			<p:column headerText="Id Compra">
 				<p:cellEditor>
 					<f:facet name="output">
-						<h:outputText value="#{lisven.idventa}" />
+						<h:outputText value="#{listacmpr.idcompra}" />
 					</f:facet>
 					<f:facet name="input">
-						<h:inputText value="#{lisven.idventa}" style="width:100%"
+						<h:inputText value="#{listacmpr.idcompra}" style="width:100%"
 							label="IdCompra" />
 					</f:facet>
 				</p:cellEditor>

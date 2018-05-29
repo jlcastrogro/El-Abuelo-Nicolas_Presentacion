@@ -1,4 +1,4 @@
-package elabuelonicolas.managedBean.listaventas;
+package elabuelonicolas.managedBean.listaventa;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -7,29 +7,29 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
-import elabuelonicolas.bd.domain.Listaventas;
-import elabuelonicolas.service.listaventas.ListaventasService;
+import elabuelonicolas.bd.domain.Listaventa;
+import elabuelonicolas.service.listaventa.ListaventaService;
 
 @Named
-public class ListaventasBean {
+public class ListaventaBean {
 	@Inject
-	ListaventasService listaventasService;
-	private List<Listaventas> listaventasList;
+	ListaventaService listaventasService;
+	private List<Listaventa> listaventasList;
 	
-	public List<Listaventas> getListaventasList() {
+	public List<Listaventa> getListaventaList() {
 		if (listaventasList == null)
-			setListaventasList(listaventasService.findAll());
+			setListaventaList(listaventasService.findAll());
 
 		return listaventasList;
 	}
 
-	private void setListaventasList(List<Listaventas> listaventasList) {
+	private void setListaventaList(List<Listaventa> listaventasList) {
 		this.listaventasList = listaventasList;
 	}
 
 	public void onRowEdit(RowEditEvent event) {
-		Listaventas listaventas = ((Listaventas) event.getObject());
-		System.out.println("Datos de Listaventas: " + listaventas.getId());
+		Listaventa listaventas = ((Listaventa) event.getObject());
+		System.out.println("Datos de Listaventa: " + listaventas.getId());
 		listaventasService.update(listaventas);
 
 		FacesMessage msg = new FacesMessage("Listaventa editada", listaventas.getId()
@@ -39,7 +39,7 @@ public class ListaventasBean {
 
 	public void onRowCancel(RowEditEvent event) {
 		FacesMessage msg = new FacesMessage("Edición cancelada",
-				((Listaventas) event.getObject()).getId().toString());
+				((Listaventa) event.getObject()).getId().toString());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
