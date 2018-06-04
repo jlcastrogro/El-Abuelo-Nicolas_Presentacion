@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition
+	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable id="direcciones" var="direc"
+				value="#{direccionBean.getDireccionList()}" editable="true"
+				style="margin-bottom:20px">
+				<f:facet name="header">
+				Direcciones
+			</f:facet>
+				<p:ajax event="rowEdit" listener="#{direccionBean.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{direccionBean.onRowCancel}"
+					update=":form:msgs" />
+
+				<p:column headerText="Id">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{direc.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText id="direccionInput" value="#{direc.id}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Pais">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{direc.pais}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{direc.pais}" style="width:100%"
+								label="Pais" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Estado">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{direc.estado}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{direc.estado}" style="width:100%"
+								label="Estado" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Ciudad">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{direc.ciudad}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{direc.ciudad}" style="width:100%"
+								label="Ciudad" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Colonia">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{direc.colonia}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{direc.colonia}" style="width:100%"
+								label="Colonia" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Calle">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{direc.calle}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{direc.calle}" style="width:100%"
+								label="Calle" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Numero">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{direc.numero}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{direc.numero}" style="width:100%" label="Numero" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
