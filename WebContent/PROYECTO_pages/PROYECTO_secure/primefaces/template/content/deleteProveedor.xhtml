@@ -13,37 +13,35 @@
 	<ui:define name="content">
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
-			<ui:param name="titulo" value="Borrar Cliente"></ui:param>
-			<ui:param name="descripcion"
-				value="Seleccionar en la lista desplegable el id del registro a borrar y 
-				después hacer clic en Borrar." />
-			<ui:param name="archivoE" value='deleteCliente.xhtml' />
-			<ui:param name="archivoA" value='updateCliente.xhtml' />
-			<ui:param name="archivoC" value='createCliente.xhtml' />
+			<ui:param name="titulo" value="Proveedores"></ui:param>
+			<ui:param name="descripcion" value="Seleccionar en la lista desplegable el id del registro a borrar y 
+				después hacer clic en Borrar.">
+			</ui:param>
+			<ui:param name="archivoC" value='createProveedor.xhtml' />
+			<ui:param name="archivoA" value='updateProveedor.xhtml' />
+			<ui:param name="archivoE" value='deleteProveedor.xhtml' />
 			<ui:param name="visibleE" value="none" />
 		</ui:include>
-
-
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="clientes" var="cli"
-				value="#{clienteBean.getClienteList()}" editable="true"
+			<p:dataTable id="proveedores" var="prov"
+				value="#{proveedorBean.getProveedorList()}" editable="true"
 				style="margin-bottom:20px">
 				<f:facet name="header">
-				Clientes
+				Proveedores
 			</f:facet>
-				<p:ajax event="rowEdit" listener="#{clienteBean.onRowEdit}"
+				<p:ajax event="rowEdit" listener="#{proveedorBean.onRowEdit}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{clienteBean.onRowCancel}"
-					update=":form:msgs" />
+				<p:ajax event="rowEditCancel"
+					listener="#{proveedorBean.onRowCancel}" update=":form:msgs" />
 
 				<p:column headerText="Id">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cli.id}" />
+							<h:outputText value="#{prov.id}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText id="clienteInput" value="#{cli.id}"
+							<h:inputText id="proveedorInput" value="#{prov.id}"
 								style="width:100%" />
 						</f:facet>
 					</p:cellEditor>
@@ -52,10 +50,10 @@
 				<p:column headerText="Nombre">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cli.nombre}" />
+							<h:outputText value="#{prov.nombre}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{cli.nombre}" style="width:100%"
+							<h:inputText value="#{prov.nombre}" style="width:100%"
 								label="Nombre" />
 						</f:facet>
 					</p:cellEditor>
@@ -64,10 +62,10 @@
 				<p:column headerText="Dirección">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cli.iddireccion}" />
+							<h:outputText value="#{prov.iddireccion}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{cli.iddireccion}" style="width:100%"
+							<h:inputText value="#{prov.iddireccion}" style="width:100%"
 								label="Direccion" />
 						</f:facet>
 					</p:cellEditor>
@@ -76,10 +74,10 @@
 				<p:column headerText="Contacto">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cli.contacto}" />
+							<h:outputText value="#{prov.contacto}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{cli.contacto}" style="width:100%"
+							<h:inputText value="#{prov.contacto}" style="width:100%"
 								label="Contacto" />
 						</f:facet>
 					</p:cellEditor>
@@ -88,10 +86,10 @@
 				<p:column headerText="Teléfono">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cli.telefono}" />
+							<h:outputText value="#{prov.telefono}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{cli.telefono}" style="width:100%"
+							<h:inputText value="#{prov.telefono}" style="width:100%"
 								label="Telefono" />
 						</f:facet>
 					</p:cellEditor>
@@ -100,10 +98,10 @@
 				<p:column headerText="Email">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cli.email}" />
+							<h:outputText value="#{prov.email}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{cli.email}" style="width:100%"
+							<h:inputText value="#{prov.email}" style="width:100%"
 								label="Email" />
 						</f:facet>
 					</p:cellEditor>
@@ -112,10 +110,10 @@
 				<p:column headerText="RFC">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{cli.rfc}" />
+							<h:outputText value="#{prov.rfc}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{cli.rfc}" style="width:100%" label="RFC" />
+							<h:inputText value="#{prov.rfc}" style="width:100%" label="RFC" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
@@ -125,6 +123,7 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>
