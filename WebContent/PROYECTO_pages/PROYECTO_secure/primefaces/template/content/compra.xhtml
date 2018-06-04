@@ -11,6 +11,11 @@
 <ui:composition
 	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
 	<ui:define name="content">
+		<ui:include
+			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
+			<ui:param name="titulo" value="Compra"></ui:param>
+			<ui:param name="descripcion" value="Página de control de Compras" />
+		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="compra" var="compr"
