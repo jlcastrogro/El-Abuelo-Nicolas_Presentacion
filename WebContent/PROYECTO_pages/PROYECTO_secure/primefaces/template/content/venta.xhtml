@@ -11,11 +11,15 @@
 <ui:composition
 	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
 	<ui:define name="content">
+		<ui:include
+			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
+			<ui:param name="titulo" value="Ventas"></ui:param>
+			<ui:param name="descripcion" value="Página de control de Ventas" />			
+		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="venta" var="ven"
-				value="#{ventaBean.getVentaList()}" editable="true"
-				style="margin-bottom:20px">
+			<p:dataTable id="venta" var="ven" value="#{ventaBean.getVentaList()}"
+				editable="true" style="margin-bottom:20px">
 				<f:facet name="header">
 					Ventas
 				</f:facet>
@@ -45,19 +49,6 @@
 						<f:facet name="input">
 							<h:inputText value="#{ven.idcliente}" style="width:100%"
 								label="IdCliente" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
-
-				<p:column headerText="Id Lista Venta">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.idlistaventa}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.idlistaventa}" style="width:100%"
-								label="IdListaVenta" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>

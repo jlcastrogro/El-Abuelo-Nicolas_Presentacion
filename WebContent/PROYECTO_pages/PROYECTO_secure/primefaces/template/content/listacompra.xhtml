@@ -11,6 +11,11 @@
 <ui:composition
 	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
 	<ui:define name="content">
+		<ui:include
+			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
+			<ui:param name="titulo" value="Lista de Compras"></ui:param>
+			<ui:param name="descripcion" value="Página de control de Compras" />
+		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="listacompra" var="listacmpr"
@@ -21,8 +26,8 @@
 			</f:facet>
 				<p:ajax event="rowEdit" listener="#{listacompraBean.onRowEdit}"
 					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{listacompraBean.onRowCancel}"
-					update=":form:msgs" />
+				<p:ajax event="rowEditCancel"
+					listener="#{listacompraBean.onRowCancel}" update=":form:msgs" />
 
 				<p:column headerText="Id">
 					<p:cellEditor>
@@ -36,53 +41,54 @@
 					</p:cellEditor>
 				</p:column>
 
-<p:column headerText="Id Producto">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{listacmpr.idproducto}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{listacmpr.idproducto}" style="width:100%"
-							label="IdProducto" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Id Compra">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{listacmpr.idcompra}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{listacmpr.idcompra}" style="width:100%"
+								label="IdCompra" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="Cantidad">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{listacmpr.cantidad}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{listacmpr.cantidad}" style="width:100%"
-							label="Cantidad" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Id Producto">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{listacmpr.idproducto}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{listacmpr.idproducto}" style="width:100%"
+								label="IdProducto" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="Subtotal">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{listacmpr.subtotal}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{listacmpr.subtotal}" style="width:100%"
-							label="Subtotal" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Cantidad">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{listacmpr.cantidad}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{listacmpr.cantidad}" style="width:100%"
+								label="Cantidad" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="Id Compra">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{listacmpr.idcompra}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{listacmpr.idcompra}" style="width:100%"
-							label="IdCompra" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Subtotal">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{listacmpr.subtotal}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{listacmpr.subtotal}" style="width:100%"
+								label="Subtotal" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
 				<p:column style="width:32px">
 					<p:rowEditor />
 				</p:column>

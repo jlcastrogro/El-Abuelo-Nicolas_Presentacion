@@ -11,14 +11,19 @@
 <ui:composition
 	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
 	<ui:define name="content">
+		<ui:include
+			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
+			<ui:param name="titulo" value="Compra"></ui:param>
+			<ui:param name="descripcion" value="Página de control de Compras" />
+		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="compra" var="compr"
 				value="#{compraBean.getCompraList()}" editable="true"
 				style="margin-bottom:20px">
 				<f:facet name="header">
-				Clientes
-			</f:facet>
+					Clientes
+				</f:facet>
 				<p:ajax event="rowEdit" listener="#{compraBean.onRowEdit}"
 					update=":form:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{compraBean.onRowCancel}"
@@ -36,55 +41,41 @@
 					</p:cellEditor>
 				</p:column>
 
-
 				<p:column headerText="Id Proveedor">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{compr.idproveedor}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{compr.idproveedor}" style="width:100%"
-							label="IdProveedor" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-				
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{compr.idproveedor}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{compr.idproveedor}" style="width:100%"
+								label="IdProveedor" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-				<p:column headerText="Id Lista Compra">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{compr.idlistacompra}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{compr.idlistacompra}" style="width:100%"
-							label="IdListaCompra" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Fecha">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{compr.fecha}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{compr.fecha}" style="width:100%"
+								label="Fecha" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column headerText="Fecha">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{compr.fecha}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{compr.fecha}" style="width:100%"
-							label="Fecha" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-
-			<p:column headerText="Precio Total">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{compr.total}" />
-					</f:facet>
-					<f:facet name="input">
-						<h:inputText value="#{compr.total}" style="width:100%"
-							label="Precio Total" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+				<p:column headerText="Precio Total">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{compr.total}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{compr.total}" style="width:100%"
+								label="Precio Total" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
 				<p:column style="width:32px">
 					<p:rowEditor />

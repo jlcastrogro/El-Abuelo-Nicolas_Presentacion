@@ -11,6 +11,12 @@
 <ui:composition
 	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
 	<ui:define name="content">
+		<ui:include
+			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
+			<ui:param name="titulo" value="Productos"></ui:param>
+			<ui:param name="descripcion" value="Página de control de Productos">
+			</ui:param>
+		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="productos" var="prod"
@@ -42,8 +48,7 @@
 							<h:outputText value="#{prod.tipo}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{prod.tipo}" style="width:100%"
-								label="Tipo" />
+							<h:inputText value="#{prod.tipo}" style="width:100%" label="Tipo" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
