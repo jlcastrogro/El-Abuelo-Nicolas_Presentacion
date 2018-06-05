@@ -54,4 +54,8 @@ public class ClienteBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+	
+	public void deleteRow() {
+		
+	}
 }

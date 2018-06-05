@@ -11,103 +11,104 @@
 <ui:composition
 	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
 	<ui:define name="content">
-		<ui:include
-			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
-			<ui:param name="titulo" value="Proveedores"></ui:param>
-			<ui:param name="descripcion" value="Página de control de Proveedores">
-			</ui:param>
-			<ui:param name="archivoC" value='createProveedor.xhtml' />
-			<ui:param name="archivoA" value='updateProveedor.xhtml' />
-			<ui:param name="archivoE" value='deleteProveedor.xhtml' />
-		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="proveedores" var="prov" value="#{proveedorBean.getProveedorList()}" 
-			editable="false" style="margin-bottom:20px">
+			<p:dataTable id="direcciones" var="direc"
+				value="#{direccionBean.getDireccionList()}" editable="true"
+				style="margin-bottom:20px">
 				<f:facet name="header">
-				Proveedores
+				Direcciones
 			</f:facet>
-				<p:column headerText="Id" style="width:50px">
+				<p:ajax event="rowEdit" listener="#{direccionBean.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{direccionBean.onRowCancel}"
+					update=":form:msgs" />
+
+				<p:column headerText="Id">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{prov.id}" />
+							<h:outputText value="#{direc.id}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText id="proveedorInput" value="#{prov.id}"
+							<h:inputText id="direccionInput" value="#{direc.id}"
 								style="width:100%" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Nombre">
+				<p:column headerText="Pais">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{prov.nombre}" />
+							<h:outputText value="#{direc.pais}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{prov.nombre}" style="width:100%"
-								label="Nombre" />
+							<h:inputText value="#{direc.pais}" style="width:100%"
+								label="Pais" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Dirección">
+				<p:column headerText="Estado">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{prov.iddireccion}" />
+							<h:outputText value="#{direc.estado}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{prov.iddireccion}" style="width:100%"
-								label="Direccion" />
+							<h:inputText value="#{direc.estado}" style="width:100%"
+								label="Estado" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Contacto">
+				<p:column headerText="Ciudad">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{prov.contacto}" />
+							<h:outputText value="#{direc.ciudad}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{prov.contacto}" style="width:100%"
-								label="Contacto" />
+							<h:inputText value="#{direc.ciudad}" style="width:100%"
+								label="Ciudad" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Teléfono">
+				<p:column headerText="Colonia">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{prov.telefono}" />
+							<h:outputText value="#{direc.colonia}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{prov.telefono}" style="width:100%"
-								label="Telefono" />
+							<h:inputText value="#{direc.colonia}" style="width:100%"
+								label="Colonia" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Email">
+				<p:column headerText="Calle">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{prov.email}" />
+							<h:outputText value="#{direc.calle}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{prov.email}" style="width:100%"
-								label="Email" />
+							<h:inputText value="#{direc.calle}" style="width:100%"
+								label="Calle" />
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="RFC">
+				<p:column headerText="Numero">
 					<p:cellEditor>
 						<f:facet name="output">
-							<h:outputText value="#{prov.rfc}" />
+							<h:outputText value="#{direc.numero}" />
 						</f:facet>
 						<f:facet name="input">
-							<h:inputText value="#{prov.rfc}" style="width:100%" label="RFC" />
+							<h:inputText value="#{direc.numero}" style="width:100%" label="Numero" />
 						</f:facet>
 					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:32px">
+					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>

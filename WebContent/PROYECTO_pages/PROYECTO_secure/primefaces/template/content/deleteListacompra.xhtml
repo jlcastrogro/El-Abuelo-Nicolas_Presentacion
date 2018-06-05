@@ -18,6 +18,7 @@
 			<ui:param name="archivoA" value='updateListacompra.xhtml' />
 			<ui:param name="archivoC" value='createListacompra.xhtml' />
 			<ui:param name="archivoE" value='deleteListacompra.xhtml' />
+			<ui:param name="visibleE" value="none" />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
@@ -85,6 +86,10 @@
 								label="Subtotal" />
 						</f:facet>
 					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:32px">
+					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>

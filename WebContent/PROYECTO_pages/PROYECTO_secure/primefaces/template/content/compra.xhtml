@@ -22,17 +22,12 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="compra" var="compr"
-				value="#{compraBean.getCompraList()}" editable="true"
+				value="#{compraBean.getCompraList()}" editable="false"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 					Compra
 				</f:facet>
-				<p:ajax event="rowEdit" listener="#{compraBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{compraBean.onRowCancel}"
-					update=":form:msgs" />
-
-				<p:column headerText="Id">
+				<p:column headerText="Id" style="width:50px">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{compr.id}" />
@@ -78,10 +73,6 @@
 								label="Precio Total" />
 						</f:facet>
 					</p:cellEditor>
-				</p:column>
-
-				<p:column style="width:32px">
-					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>

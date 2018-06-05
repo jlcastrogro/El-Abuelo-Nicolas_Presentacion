@@ -22,17 +22,12 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="productos" var="prod"
-				value="#{productoBean.getProductoList()}" editable="true"
+				value="#{productoBean.getProductoList()}" editable="false"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 				Productos
 			</f:facet>
-				<p:ajax event="rowEdit" listener="#{productoBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{productoBean.onRowCancel}"
-					update=":form:msgs" />
-
-				<p:column headerText="Id">
+				<p:column headerText="Id" style="width:50px">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{prod.id}" />
@@ -89,10 +84,6 @@
 								label="Existencia" />
 						</f:facet>
 					</p:cellEditor>
-				</p:column>
-
-				<p:column style="width:32px">
-					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>

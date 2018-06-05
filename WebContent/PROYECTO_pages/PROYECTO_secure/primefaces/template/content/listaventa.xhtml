@@ -15,6 +15,9 @@
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Lista de Ventas"></ui:param>
 			<ui:param name="descripcion" value="Página de control de Lista de Ventas" />
+			<ui:param name="archivoA" value='updateListaventa.xhtml' />
+			<ui:param name="archivoC" value='createListaventa.xhtml' />
+			<ui:param name="archivoE" value='deleteListaventa.xhtml' />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
@@ -24,12 +27,7 @@
 				<f:facet name="header">
 					Lista de Ventas
 				</f:facet>
-				<p:ajax event="rowEdit" listener="#{listaventaBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel"
-					listener="#{listaventaBean.onRowCancel}" update=":form:msgs" />
-
-				<p:column headerText="Id">
+				<p:column headerText="Id" style="width:50px">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{lisven.id}" />
@@ -87,10 +85,6 @@
 								label="Subtotal" />
 						</f:facet>
 					</p:cellEditor>
-				</p:column>
-
-				<p:column style="width:32px">
-					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>

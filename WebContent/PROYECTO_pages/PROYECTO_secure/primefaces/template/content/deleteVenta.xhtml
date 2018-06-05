@@ -24,16 +24,11 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="venta" var="ven" value="#{ventaBean.getVentaList()}"
-				editable="true" style="margin-bottom:20px">
+				editable="false" style="margin-bottom:20px">
 				<f:facet name="header">
 					Ventas
 				</f:facet>
-				<p:ajax event="rowEdit" listener="#{ventaBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{ventaBean.onRowCancel}"
-					update=":form:msgs" />
-
-				<p:column headerText="Id">
+				<p:column headerText="Id" style="width:50px">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{ven.id}" />
@@ -80,10 +75,6 @@
 								label="Precio Total" />
 						</f:facet>
 					</p:cellEditor>
-				</p:column>
-
-				<p:column style="width:32px">
-					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>

@@ -22,8 +22,6 @@
 			<ui:param name="archivoC" value='createCliente.xhtml' />
 			<ui:param name="visibleE" value="none" />
 		</ui:include>
-
-
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="clientes" var="cli"
@@ -32,12 +30,7 @@
 				<f:facet name="header">
 				Clientes
 			</f:facet>
-				<p:ajax event="rowEdit" listener="#{clienteBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{clienteBean.onRowCancel}"
-					update=":form:msgs" />
-
-				<p:column headerText="Id">
+				<p:column headerText="Id" style="width:50px">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{cli.id}" />

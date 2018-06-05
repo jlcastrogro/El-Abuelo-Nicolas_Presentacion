@@ -25,17 +25,12 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="proveedores" var="prov"
-				value="#{proveedorBean.getProveedorList()}" editable="true"
+				value="#{proveedorBean.getProveedorList()}" editable="false"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 				Proveedores
 			</f:facet>
-				<p:ajax event="rowEdit" listener="#{proveedorBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel"
-					listener="#{proveedorBean.onRowCancel}" update=":form:msgs" />
-
-				<p:column headerText="Id">
+				<p:column headerText="Id" style="width:50px;">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{prov.id}" />
@@ -116,10 +111,6 @@
 							<h:inputText value="#{prov.rfc}" style="width:100%" label="RFC" />
 						</f:facet>
 					</p:cellEditor>
-				</p:column>
-
-				<p:column style="width:32px">
-					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>

@@ -14,20 +14,28 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Lista de Compras"></ui:param>
-			<ui:param name="descripcion" value="Página de control de Lista de Compras" />
+			<ui:param name="descripcion" value="Para realizar la actualización de un registro, en la última columna de la derecha, hacer clic sobre 
+				el ícono de lápiz para editar. Al finalizar la edición, regresar a la última columna de la derecha y hacer 
+				clic sobre el ícono de aceptar." />
 			<ui:param name="archivoA" value='updateListacompra.xhtml' />
 			<ui:param name="archivoC" value='createListacompra.xhtml' />
 			<ui:param name="archivoE" value='deleteListacompra.xhtml' />
+			<ui:param name="visibleA" value="none" />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="listacompra" var="listacmpr"
-				value="#{listacompraBean.getListacompraList()}" editable="false"
+				value="#{listacompraBean.getListacompraList()}" editable="true"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 				Clientes
 			</f:facet>
-				<p:column headerText="Id" style="width:50px">
+				<p:ajax event="rowEdit" listener="#{listacompraBean.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel"
+					listener="#{listacompraBean.onRowCancel}" update=":form:msgs" />
+
+				<p:column headerText="Id">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{listacmpr.id}" />
@@ -85,6 +93,10 @@
 								label="Subtotal" />
 						</f:facet>
 					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:32px">
+					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>
