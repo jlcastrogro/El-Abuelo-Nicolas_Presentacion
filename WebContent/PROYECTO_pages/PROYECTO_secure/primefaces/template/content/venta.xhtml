@@ -17,12 +17,12 @@
 			<ui:param name="descripcion" value="Página de control de Ventas" />
 			<ui:param name="archivoA" value='updateVenta.xhtml' />
 			<ui:param name="archivoC" value='createVenta.xhtml' />
-			<ui:param name="archivoE" value='deleteVenta.xhtml' />			
+			<ui:param name="archivoE" value='deleteVenta.xhtml' />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="venta" var="ven" value="#{ventaBean.getVentaList()}"
-				editable="false" style="margin-bottom:20px">
+				editable="false" style="margin-bottom:20px">	
 				<f:facet name="header">
 					Ventas
 				</f:facet>
@@ -37,8 +37,6 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
-
 				<p:column headerText="Id Cliente">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -50,7 +48,6 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="Fecha">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -62,7 +59,6 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="Precio Total">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -76,7 +72,6 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
-
 	</ui:define>
 </ui:composition>
 </html>

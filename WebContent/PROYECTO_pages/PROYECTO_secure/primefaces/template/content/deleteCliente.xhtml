@@ -25,23 +25,11 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="clientes" var="cli"
-				value="#{clienteBean.getClienteList()}" editable="true"
+				value="#{clienteBean.getClienteList()}" editable="false"
 				style="margin-bottom:20px">
 				<f:facet name="header">
 				Clientes
 			</f:facet>
-				<p:column headerText="Id" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cli.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="clienteInput" value="#{cli.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
 				<p:column headerText="Nombre">
 					<p:cellEditor>
 						<f:facet name="output">
@@ -111,10 +99,6 @@
 							<h:inputText value="#{cli.rfc}" style="width:100%" label="RFC" />
 						</f:facet>
 					</p:cellEditor>
-				</p:column>
-
-				<p:column style="width:32px">
-					<p:rowEditor />
 				</p:column>
 			</p:dataTable>
 		</h:form>
