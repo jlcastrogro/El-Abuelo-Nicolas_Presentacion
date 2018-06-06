@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition
+	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
+	<ui:define name="content">
+		<ui:include
+			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
+			<ui:param name="titulo" value="Proveedores"></ui:param>
+			<ui:param name="descripcion" value="Seleccionar en la lista desplegable el id del registro a borrar y 
+				después hacer clic en Borrar.">
+			</ui:param>
+			<ui:param name="archivoC" value='createProveedor.xhtml' />
+			<ui:param name="archivoA" value='updateProveedor.xhtml' />
+			<ui:param name="archivoE" value='deleteProveedor.xhtml' />
+			<ui:param name="visibleE" value="none" />
+		</ui:include>
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable id="cars" var="prov" value="#{proveedorBean.getProveedorList()}" rowKey="#{prov.id}" > 
+				<f:facet name="header" >
+				Eliminar proveedores
+			</f:facet>
+				<p:column headerText="Id" style="width:50px;">
+							<h:outputText value="#{prov.id}" />
+				</p:column>
+				<p:column headerText="Nombre">
+							<h:outputText value="#{prov.nombre}" />
+				</p:column>
+				<p:column headerText="Dirección">
+							<h:outputText value="#{prov.iddireccion}" />
+				</p:column>
+				<p:column headerText="Contacto">
+							<h:outputText value="#{prov.contacto}" />
+				</p:column>
+				<p:column headerText="Teléfono">
+							<h:outputText value="#{prov.telefono}" />
+				</p:column>
+				<p:column headerText="Email">
+							<h:outputText value="#{prov.email}" />
+				</p:column>
+				<p:column headerText="RFC">
+							<h:outputText value="#{prov.rfc}" />
+				</p:column>
+				<p:column headerText="Eliminar" style="width:32px">
+    				
+    				<p:commandButton value="Eliminar" icon="ui-icon-trash"  actionListener="#{proveedorBean.deleteAction(prov)}" 
+    				 onclick= "return confirm('¿Estás seguro de eliminar al proveedor?');"  >
+    					
+    				</p:commandButton>
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
