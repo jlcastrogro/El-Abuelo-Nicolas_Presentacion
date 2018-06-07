@@ -7,13 +7,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+
 import elabuelonicolas.bd.domain.Proveedor;
 import elabuelonicolas.service.proveedor.ProveedorService;
 
 @Named
 public class ProveedorBean {
 	@Inject
-	ProveedorService proveedorService;
+	private ProveedorService proveedorService;
 	private List<Proveedor> proveedorList;
 
 	public List<Proveedor> getProveedorList() {
@@ -53,5 +54,11 @@ public class ProveedorBean {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Proveedor modificado", "Antes: " + oldValue + ", Ahora: "+ newValue);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
+	}
+	
+	public String deleteAction(Proveedor order){   
+		proveedorList.remove(order);
+		proveedorService.delete(order.getId());
+		return null;
 	}
 }
