@@ -13,58 +13,51 @@
 	<ui:define name="content">
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
-			<ui:param name="titulo" value="Borrar Cliente"></ui:param>
+			<ui:param name="titulo" value="Productos" />
 			<ui:param name="descripcion"
 				value="Seleccionar en la lista desplegable el id del registro a borrar y 
 				después hacer clic en Borrar." />
-			<ui:param name="archivoE" value='deleteCliente.xhtml' />
-			<ui:param name="archivoA" value='updateCliente.xhtml' />
-			<ui:param name="archivoC" value='createCliente.xhtml' />
+			<ui:param name="archivoA" value='updateProducto.xhtml' />
+			<ui:param name="archivoC" value='createProducto.xhtml' />
+			<ui:param name="archivoE" value='deleteProducto.xhtml' />
 			<ui:param name="visibleE" value="none" />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="clientes" var="cli"
-				value="#{clienteBean.getClienteList()}" editable="false"
+			<p:dataTable id="productos" var="prod"
+				value="#{productoBean.getProductoList()}" editable="false"
 				style="margin-bottom:20px">
 				<f:facet name="header">
-				Clientes
+				Productos
 			</f:facet>
-				<p:column headerText="Id" style="width: 50px;">
-					<h:outputText value="#{cli.id}" />
-				</p:column>
-				<p:column headerText="Nombre">
-					<h:outputText value="#{cli.nombre}" />
+				<p:column headerText="Id" style="width:50px">
+					<h:outputText value="#{prod.id}" />
 				</p:column>
 
-				<p:column headerText="Dirección">
-					<h:outputText value="#{cli.iddireccion}" />
+				<p:column headerText="Tipo">
+					<h:outputText value="#{prod.tipo}" />
 				</p:column>
 
-				<p:column headerText="Contacto">
-					<h:outputText value="#{cli.contacto}" />
+				<p:column headerText="Marca">
+					<h:outputText value="#{prod.marca}" />
 				</p:column>
 
-				<p:column headerText="Teléfono">
-					<h:outputText value="#{cli.telefono}" />
+				<p:column headerText="Costo">
+					<h:outputText value="#{prod.costo}" />
 				</p:column>
 
-				<p:column headerText="Email">
-					<h:outputText value="#{cli.email}" />
+				<p:column headerText="Existencia">
+					<h:outputText value="#{prod.existencia}" />
 				</p:column>
-
-				<p:column headerText="RFC">
-					<h:outputText value="#{cli.rfc}" />
-				</p:column>
-
 				<p:column>
 					<p:commandButton value="Eliminar" icon="ui-icon-trash"
-						actionListener="#{clienteBean.deleteAction(cli)}"
-						onclick="return confirm('¿Estás seguro de eliminar al Cliente?');">
+						actionListener="#{productoBean.deleteAction(prod)}"
+						onclick="return confirm('¿Estás seguro de eliminar el producto?');">
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>

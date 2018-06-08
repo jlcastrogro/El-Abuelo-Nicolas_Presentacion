@@ -42,5 +42,4 @@
 			<version>${primefaces.version}</version>
 		</dependency>
 	</dependencies>
-
 </project>

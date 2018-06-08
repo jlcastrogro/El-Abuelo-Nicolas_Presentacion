@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition
+	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
+	<ui:define name="content">
+		<ui:include
+			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
+			<ui:param name="titulo" value="Lista de Ventas"></ui:param>
+			<ui:param name="descripcion"
+				value="Página de control de Lista de Ventas" />
+			<ui:param name="archivoA" value='updateListaventa.xhtml' />
+			<ui:param name="archivoC" value='createListaventa.xhtml' />
+			<ui:param name="archivoE" value='deleteListaventa.xhtml' />
+			<ui:param name="visibleE" value="none" />
+		</ui:include>
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			<p:dataTable id="listaventa" var="lisven"
+				value="#{listaventaBean.getListaventaList()}" editable="false"
+				style="margin-bottom:20px">
+				<f:facet name="header">
+					Lista de Ventas
+				</f:facet>
+				<p:column headerText="Id" style="width:50px">
+					<h:outputText value="#{lisven.id}" />
+				</p:column>
+				<p:column headerText="Id Compra">
+					<h:outputText value="#{lisven.idventa}" />
+				</p:column>
+				<p:column headerText="Id Producto">
+					<h:outputText value="#{lisven.idproducto}" />
+				</p:column>
+				<p:column headerText="Cantidad">
+					<h:outputText value="#{lisven.cantidad}" />
+				</p:column>
+				<p:column headerText="Subtotal">
+					<h:outputText value="#{lisven.subtotal}" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Eliminar" icon="ui-icon-trash"
+						actionListener="#{listaventaBean.deleteAction(lisven)}"
+						onclick="return confirm('¿Estás seguro de eliminar la Lista de Venta?');">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

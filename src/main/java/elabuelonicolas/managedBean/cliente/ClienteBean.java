@@ -54,4 +54,10 @@ public class ClienteBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+	
+	public String deleteAction(Cliente order){   
+		clienteList.remove(order);
+		clienteService.delete(order.getId());
+		return null;
+	}
 }

@@ -54,4 +54,9 @@ public class ProductoBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+	public String deleteAction(Producto order){   
+		productoList.remove(order);
+		productoService.delete(order.getId());
+		return null;
+	}
 }

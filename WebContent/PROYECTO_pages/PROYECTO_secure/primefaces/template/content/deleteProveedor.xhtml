@@ -49,11 +49,9 @@
 				<p:column headerText="RFC">
 							<h:outputText value="#{prov.rfc}" />
 				</p:column>
-				<p:column headerText="Eliminar" style="width:32px">
-    				
+				<p:column>
     				<p:commandButton value="Eliminar" icon="ui-icon-trash"  actionListener="#{proveedorBean.deleteAction(prov)}" 
-    				 onclick= "return confirm('¿Estás seguro de eliminar al proveedor?');"  >
-    					
+    				 onclick= "return confirm('¿Estás seguro de eliminar al Proveedor?');"  >
     				</p:commandButton>
 				</p:column>
 				

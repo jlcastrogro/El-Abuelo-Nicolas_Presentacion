@@ -15,15 +15,102 @@
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Registrar"></ui:param>
 			<ui:param name="descripcion" value="Formulario de Cliente" />
-			<ui:param name="archivo" value='createCliente.xhtml' />
+			<ui:param name="archivoC" value='createCliente.xhtml' />
 			<ui:param name="archivoA" value='updateCliente.xhtml' />
 			<ui:param name="archivoE" value='deleteCliente.xhtml' />
 			<ui:param name="visibleC" value="none" />
 		</ui:include>
-	</ui:define>
+		
+	<h:form>
+    <p:panel id="panel" header="Nuevo Cliente">
+ 
+        <p:messages id="msgs" />
+ 
+        <h:panelGrid>
+        	
+        	<p:row>
+			<p:column>
+        	<!-- Nombre -->
+            <p:outputLabel for="nombre" value="Nombre:" />
+            </p:column>
+            <p:column>
+            <p:inputText id="nombre" value="#{userView.firstname}" required="true" label="Nombre">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            </p:column>
+            <p:message for="nombre" display="icon" />
+            </p:row>
 
-	<h:form id="form">
-		<p:growl>Nombre:</p:growl>
-	</h:form>
+			<p:row>
+			<p:column>
+ 			<!-- Dirección -->
+            <p:outputLabel for="direccion" value="Dirección:" />
+            </p:column>
+            <p:column>
+            <p:inputText id="direccion" value="#{userView.lastname}" label="direccion" required="true">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            </p:column>
+            <p:message for="direccion" display="icon" />
+            </p:row>
+
+			<p:row>
+			<p:column>
+            <!-- Contacto -->
+            <p:outputLabel for="contacto" value="Contacto:" />
+            </p:column>
+            <p:column>
+            <p:inputText id="contacto" value="#{userView.lastname}" label="contacto" required="true">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            </p:column>
+            <p:message for="contacto" display="icon" />
+            </p:row>
+            
+            <p:row>
+        	<p:column >
+            <!-- Teléfono -->
+            <p:outputLabel for="telefono" value="Teléfono:" />
+            </p:column>
+            <p:column>
+            <p:inputText id="telefono" value="#{userView.lastname}" label="telefono" required="true">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            </p:column>
+            <p:message for="telefono" display="icon" />
+            </p:row>
+            
+            <p:row>
+        	<p:column >
+            <!-- Email -->
+            <p:outputLabel for="email" value="Email:" />
+            </p:column>
+            <p:column>
+            <p:inputText id="email" value="#{userView.lastname}" label="email" required="true">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            </p:column>
+            <p:message for="email" display="icon" />
+            </p:row>
+            
+            <p:row>
+        	<p:column >
+            <!-- RFC -->
+            <p:outputLabel for="rfc" value="RFC:" style="width:30%"/>
+            </p:column>
+            <p:column>
+            <p:inputText id="rfc" value="#{userView.lastname}" label="rfc" required="true">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            </p:column>
+            <p:message for="rfc" display="icon" />
+            </p:row>
+ 
+        </h:panelGrid>
+ 
+        <p:commandButton value="Guardar" update="panel" actionListener="#{userView.save}" icon="ui-icon-check" />
+    </p:panel>
+</h:form>
+	</ui:define>
 </ui:composition>
 </html>

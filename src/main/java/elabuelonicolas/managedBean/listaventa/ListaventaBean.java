@@ -54,4 +54,9 @@ public class ListaventaBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+	public String deleteAction(Listaventa order){   
+		listaventasList.remove(order);
+		listaventasService.delete(order.getId());
+		return null;
+	}
 }
