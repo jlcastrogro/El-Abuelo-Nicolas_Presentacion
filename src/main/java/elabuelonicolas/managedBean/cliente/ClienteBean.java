@@ -55,7 +55,9 @@ public class ClienteBean {
 		}
 	}
 	
-	public void deleteRow() {
-		
+	public String deleteAction(Cliente order){   
+		clienteList.remove(order);
+		clienteService.delete(order.getId());
+		return null;
 	}
 }

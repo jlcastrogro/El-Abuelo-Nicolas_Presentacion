@@ -55,4 +55,9 @@ public class CompraBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+	public String deleteAction(Compra order){   
+		compraList.remove(order);
+		compraService.delete(order.getId());
+		return null;
+	}
 }

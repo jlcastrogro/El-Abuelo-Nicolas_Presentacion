@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+
 import elabuelonicolas.bd.domain.Venta;
 import elabuelonicolas.service.venta.VentaService;
 
@@ -53,5 +54,11 @@ public class VentaBean {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Venta modificada", "Antes: " + oldValue + ", Ahora: "+ newValue);
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
+	}
+	
+	public String deleteAction(Venta order){   
+		ventasList.remove(order);
+		ventasService.delete(order.getId());
+		return null;
 	}
 }

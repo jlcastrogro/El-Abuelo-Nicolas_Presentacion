@@ -54,4 +54,10 @@ public class ProveedorBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
+	
+	public String deleteAction(Proveedor order){   
+		proveedorList.remove(order);
+		proveedorService.delete(order.getId());
+		return null;
+	}
 }

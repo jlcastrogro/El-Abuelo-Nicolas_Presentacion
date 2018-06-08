@@ -13,21 +13,28 @@
 	<ui:define name="content">
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
-			<ui:param name="titulo" value="Proveedores"></ui:param>
-			<ui:param name="descripcion" value="Página de control de Proveedores">
-			</ui:param>
-			<ui:param name="archivoC" value='createProveedor.xhtml' />
+			<ui:param name="titulo" value="Proveedores" />
+			<ui:param name="descripcion" value="Página de control de Proveedores" />
 			<ui:param name="archivoA" value='updateProveedor.xhtml' />
+			<ui:param name="archivoC" value='createProveedor.xhtml' />
 			<ui:param name="archivoE" value='deleteProveedor.xhtml' />
+			
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="proveedores" var="prov" value="#{proveedorBean.getProveedorList()}" 
-			editable="false" style="margin-bottom:20px">
+			<p:dataTable id="proveedores" var="prov"
+				value="#{proveedorBean.getProveedorList()}" 
+				editable="false"
+				style="margin-bottom:20px">
 				<f:facet name="header">
 				Proveedores
 			</f:facet>
-				<p:column headerText="Id" style="width:50px">
+				<p:ajax event="rowEdit" listener="#{proveedorBean.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel"
+					listener="#{proveedorBean.onRowCancel}" update=":form:msgs" />
+
+				<p:column headerText="Id">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{prov.id}" />

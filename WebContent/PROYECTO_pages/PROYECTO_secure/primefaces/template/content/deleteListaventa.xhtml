@@ -14,7 +14,8 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Lista de Ventas"></ui:param>
-			<ui:param name="descripcion" value="Página de control de Lista de Ventas" />
+			<ui:param name="descripcion"
+				value="Página de control de Lista de Ventas" />
 			<ui:param name="archivoA" value='updateListaventa.xhtml' />
 			<ui:param name="archivoC" value='createListaventa.xhtml' />
 			<ui:param name="archivoE" value='deleteListaventa.xhtml' />
@@ -29,63 +30,25 @@
 					Lista de Ventas
 				</f:facet>
 				<p:column headerText="Id" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="listaventaInput" value="#{lisven.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{lisven.id}" />
 				</p:column>
-
 				<p:column headerText="Id Compra">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.idventa}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.idventa}" style="width:100%"
-								label="IdCompra" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{lisven.idventa}" />
 				</p:column>
-
 				<p:column headerText="Id Producto">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.idproducto}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.idproducto}" style="width:100%"
-								label="IdProducto" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{lisven.idproducto}" />
 				</p:column>
-
 				<p:column headerText="Cantidad">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.cantidad}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.cantidad}" style="width:100%"
-								label="Cantidad" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{lisven.cantidad}" />
 				</p:column>
-
 				<p:column headerText="Subtotal">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.subtotal}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.subtotal}" style="width:100%"
-								label="Subtotal" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{lisven.subtotal}" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Eliminar" icon="ui-icon-trash"
+						actionListener="#{listaventaBean.deleteAction(lisven)}"
+						onclick="return confirm('¿Estás seguro de eliminar la Lista de Venta?');">
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>

@@ -14,8 +14,9 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Productos" />
-			<ui:param name="descripcion" value="Seleccionar en la lista desplegable el id del registro a borrar y 
-				después hacer clic en Borrar."  />
+			<ui:param name="descripcion"
+				value="Seleccionar en la lista desplegable el id del registro a borrar y 
+				después hacer clic en Borrar." />
 			<ui:param name="archivoA" value='updateProducto.xhtml' />
 			<ui:param name="archivoC" value='createProducto.xhtml' />
 			<ui:param name="archivoE" value='deleteProducto.xhtml' />
@@ -30,62 +31,29 @@
 				Productos
 			</f:facet>
 				<p:column headerText="Id" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="productoInput" value="#{prod.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{prod.id}" />
 				</p:column>
 
 				<p:column headerText="Tipo">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.tipo}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.tipo}" style="width:100%" label="Tipo" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{prod.tipo}" />
 				</p:column>
 
 				<p:column headerText="Marca">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.marca}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.marca}" style="width:100%"
-								label="Marca" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{prod.marca}" />
 				</p:column>
 
 				<p:column headerText="Costo">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.costo}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.costo}" style="width:100%"
-								label="Costo" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{prod.costo}" />
 				</p:column>
 
 				<p:column headerText="Existencia">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.existencia}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.existencia}" style="width:100%"
-								label="Existencia" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{prod.existencia}" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Eliminar" icon="ui-icon-trash"
+						actionListener="#{productoBean.deleteAction(prod)}"
+						onclick="return confirm('¿Estás seguro de eliminar el producto?');">
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>

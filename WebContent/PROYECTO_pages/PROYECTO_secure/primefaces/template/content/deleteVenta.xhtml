@@ -14,12 +14,13 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Ventas" />
-			<ui:param name="descripcion" value="Seleccionar en la lista desplegable el id del registro a borrar y 
-				después hacer clic en Borrar." />	
+			<ui:param name="descripcion"
+				value="Seleccionar en la lista desplegable el id del registro a borrar y 
+				después hacer clic en Borrar." />
 			<ui:param name="archivoC" value='createVenta.xhtml' />
 			<ui:param name="archivoA" value='updateVenta.xhtml' />
 			<ui:param name="archivoE" value='deleteVenta.xhtml' />
-			<ui:param name="visibleE" value="none" />		
+			<ui:param name="visibleE" value="none" />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
@@ -29,52 +30,22 @@
 					Ventas
 				</f:facet>
 				<p:column headerText="Id" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="ventasInput" value="#{ven.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{ven.id}" />
 				</p:column>
-
-
 				<p:column headerText="Id Cliente">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.idcliente}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.idcliente}" style="width:100%"
-								label="IdCliente" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{ven.idcliente}" />
 				</p:column>
-
 				<p:column headerText="Fecha">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.fecha}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.fecha}" style="width:100%"
-								label="Fecha" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{ven.fecha}" />
 				</p:column>
-
 				<p:column headerText="Precio Total">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.total}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.total}" style="width:100%"
-								label="Precio Total" />
-						</f:facet>
-					</p:cellEditor>
+					<h:outputText value="#{ven.total}" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Eliminar" icon="ui-icon-trash"
+						actionListener="#{ventaBean.deleteAction(ven)}"
+						onclick="return confirm('¿Estás seguro de eliminar la venta?');">
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>

@@ -24,94 +24,37 @@
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
-			<p:dataTable id="proveedores" var="prov"
-				value="#{proveedorBean.getProveedorList()}" editable="false"
-				style="margin-bottom:20px">
-				<f:facet name="header">
-				Proveedores
+			<p:dataTable id="cars" var="prov" value="#{proveedorBean.getProveedorList()}" rowKey="#{prov.id}" > 
+				<f:facet name="header" >
+				Eliminar proveedores
 			</f:facet>
 				<p:column headerText="Id" style="width:50px;">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{prov.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="proveedorInput" value="#{prov.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="Nombre">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{prov.nombre}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prov.nombre}" style="width:100%"
-								label="Nombre" />
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="Dirección">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{prov.iddireccion}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prov.iddireccion}" style="width:100%"
-								label="Direccion" />
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="Contacto">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{prov.contacto}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prov.contacto}" style="width:100%"
-								label="Contacto" />
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="Teléfono">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{prov.telefono}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prov.telefono}" style="width:100%"
-								label="Telefono" />
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="Email">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{prov.email}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prov.email}" style="width:100%"
-								label="Email" />
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
-
 				<p:column headerText="RFC">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{prov.rfc}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prov.rfc}" style="width:100%" label="RFC" />
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
+				<p:column>
+    				<p:commandButton value="Eliminar" icon="ui-icon-trash"  actionListener="#{proveedorBean.deleteAction(prov)}" 
+    				 onclick= "return confirm('¿Estás seguro de eliminar al proveedor?');"  >
+    				</p:commandButton>
+				</p:column>
+				
 			</p:dataTable>
 		</h:form>
 
