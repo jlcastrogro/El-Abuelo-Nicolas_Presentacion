@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+
 import elabuelonicolas.bd.domain.Proveedor;
 import elabuelonicolas.service.proveedor.ProveedorService;
 
@@ -23,6 +25,7 @@ public class ProveedorBean {
 	private ProveedorService proveedorService;
 	private List<Proveedor> proveedorList;	
 	private List<Proveedor> filteredProv;
+
 
 	@PostConstruct
 	public List<Proveedor> getProveedorList() {
