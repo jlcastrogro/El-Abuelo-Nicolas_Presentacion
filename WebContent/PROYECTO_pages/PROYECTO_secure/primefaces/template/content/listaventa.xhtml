@@ -14,7 +14,8 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Lista de Ventas"></ui:param>
-			<ui:param name="descripcion" value="Página de control de Lista de Ventas" />
+			<ui:param name="descripcion"
+				value="Página de control de Lista de Ventas" />
 			<ui:param name="archivoA" value='updateListaventa.xhtml' />
 			<ui:param name="archivoC" value='createListaventa.xhtml' />
 			<ui:param name="archivoE" value='deleteListaventa.xhtml' />
@@ -23,68 +24,42 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="listaventa" var="lisven"
 				value="#{listaventaBean.getListaventaList()}" editable="true"
-				style="margin-bottom:20px">
+				widgetVar="listaventaTab" rowKey="#{lisven.id}"
+				resizableColumns="true" selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{listaventaBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect"
+					listener="#{listaventaBean.onRowUnselect}" update=":form:msgs" />
+
 				<f:facet name="header">
 					Lista de Ventas
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('listaventaTab').filter()" style="width:150px"
+							placeholder="" />
+					</p:outputPanel>
 				</f:facet>
-				<p:column headerText="Id" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="listaventaInput" value="#{lisven.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id" sortBy="#{lisven.id}"
+					filterBy="#{lisven.id}">
+					<h:outputText value="#{lisven.id}" />
 				</p:column>
-
-				<p:column headerText="Id Compra">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.idventa}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.idventa}" style="width:100%"
-								label="IdCompra" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id Compra" sortBy="#{lisven.idventa}"
+					filterBy="#{lisven.idventa}">
+					<h:outputText value="#{lisven.idventa}" />
 				</p:column>
-
-				<p:column headerText="Id Producto">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.idproducto}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.idproducto}" style="width:100%"
-								label="IdProducto" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id Producto" sortBy="#{lisven.idproducto}"
+					filterBy="#{lisven.idproducto}">
+					<h:outputText value="#{lisven.idproducto}" />
 				</p:column>
-
-				<p:column headerText="Cantidad">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.cantidad}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.cantidad}" style="width:100%"
-								label="Cantidad" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Cantidad" sortBy="#{lisven.cantidad}"
+					filterBy="#{lisven.cantidad}">
+					<h:outputText value="#{lisven.cantidad}" />
 				</p:column>
-
-				<p:column headerText="Subtotal">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{lisven.subtotal}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{lisven.subtotal}" style="width:100%"
-								label="Subtotal" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Subtotal" sortBy="#{lisven.subtotal}"
+					filterBy="#{lisven.subtotal}">
+					<h:outputText value="#{lisven.subtotal}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

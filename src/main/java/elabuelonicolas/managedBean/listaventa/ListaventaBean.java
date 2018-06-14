@@ -1,21 +1,30 @@
 package elabuelonicolas.managedBean.listaventa;
 
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
 import elabuelonicolas.bd.domain.Listaventa;
 import elabuelonicolas.service.listaventa.ListaventaService;
 
 @Named
+@ViewScoped
 public class ListaventaBean {
 	@Inject
 	ListaventaService listaventasService;
 	private List<Listaventa> listaventasList;
+	private List<Listaventa> filteredLisven;
 	
+	@PostConstruct
 	public List<Listaventa> getListaventaList() {
 		if (listaventasList == null)
 			setListaventaList(listaventasService.findAll());
@@ -58,5 +67,31 @@ public class ListaventaBean {
 		listaventasList.remove(order);
 		listaventasService.delete(order.getId());
 		return null;
+	}
+	
+	public void onRowSelect(SelectEvent event) {
+		Listaventa listaventa = ((Listaventa) event.getObject());
+		System.out.println("Datos proveedorSelect: " + listaventa.getId());
+		listaventasService.update(listaventa); 
+		
+		FacesMessage msg = new FacesMessage("Listaventa seleccionado", listaventa.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public void onRowUnselect(UnselectEvent event) {
+		Listaventa listaventa = ((Listaventa) event.getObject());
+		System.out.println("Datos proveedorUnselect: " + listaventa.getId());
+		listaventasService.update(listaventa); 
+		
+		FacesMessage msg = new FacesMessage("Listaventa deseleccionado", listaventa.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public List<Listaventa> getFilteredListaventa(){
+		return filteredLisven;
+	}
+	
+	public void setFilteredListaventa(List<Listaventa> filteredListaven) {
+		this.filteredLisven = filteredListaven;
 	}
 }

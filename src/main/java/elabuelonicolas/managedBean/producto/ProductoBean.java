@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
 import elabuelonicolas.bd.domain.Producto;
 import elabuelonicolas.service.producto.ProductoService;
 
@@ -15,6 +18,7 @@ public class ProductoBean {
 	@Inject
 	ProductoService productoService;
 	private List<Producto> productoList;
+	private List<Producto> filteredProd;
 
 	public List<Producto> getProductoList() {
 		if (productoList == null)
@@ -58,5 +62,31 @@ public class ProductoBean {
 		productoList.remove(order);
 		productoService.delete(order.getId());
 		return null;
+	}
+	
+	public void onRowSelect(SelectEvent event) {
+		Producto producto = ((Producto) event.getObject());
+		System.out.println("Datos proveedorSelect: " + producto.getId());
+		productoService.update(producto); 
+		
+		FacesMessage msg = new FacesMessage("Producto seleccionado", producto.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public void onRowUnselect(UnselectEvent event) {
+		Producto producto = ((Producto) event.getObject());
+		System.out.println("Datos proveedorUnselect: " + producto.getId());
+		productoService.update(producto); 
+		
+		FacesMessage msg = new FacesMessage("Producto deseleccionado", producto.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public List<Producto> getFilteredProducto(){
+		return filteredProd;
+	}
+	
+	public void setFilteredProducto(List<Producto> filteredProd) {
+		this.filteredProd = filteredProd;
 	}
 }
