@@ -23,67 +23,45 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="productos" var="prod"
 				value="#{productoBean.getProductoList()}" editable="false"
-				style="margin-bottom:20px">
+				widgetVar="productoTab" rowKey="#{prod.id}" resizableColumns="true"
+				selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{productoBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect"
+					listener="#{productorBean.onRowUnselect}" update=":form:msgs" />
+
 				<f:facet name="header">
 				Productos
-			</f:facet>
-				<p:column headerText="Id" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="productoInput" value="#{prod.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+				<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('productoTab').filter()" style="width:150px"
+							placeholder="" />
+					</p:outputPanel>
+				</f:facet>
+				<p:column headerText="Id" sortBy="#{prod.id}" filterBy="#{prod.id}">
+					<h:outputText value="#{prod.id}" />
 				</p:column>
 
-				<p:column headerText="Tipo">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.tipo}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.tipo}" style="width:100%" label="Tipo" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Tipo" sortBy="#{prod.tipo}"
+					filterBy="#{prod.tipo}">
+					<h:outputText value="#{prod.tipo}" />
 				</p:column>
 
-				<p:column headerText="Marca">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.marca}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.marca}" style="width:100%"
-								label="Marca" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Marca" sortBy="#{prod.marca}"
+					filterBy="#{prod.marca}">
+					<h:outputText value="#{prod.marca}" />
 				</p:column>
 
-				<p:column headerText="Costo">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.costo}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.costo}" style="width:100%"
-								label="Costo" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Costo" sortBy="#{prod.costo}"
+					filterBy="#{prod.costo}">
+					<h:outputText value="#{prod.costo}" />
 				</p:column>
 
-				<p:column headerText="Existencia">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.existencia}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.existencia}" style="width:100%"
-								label="Existencia" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Existencia" sortBy="#{prod.existencia}"
+					filterBy="#{prod.existencia}">
+					<h:outputText value="#{prod.existencia}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
