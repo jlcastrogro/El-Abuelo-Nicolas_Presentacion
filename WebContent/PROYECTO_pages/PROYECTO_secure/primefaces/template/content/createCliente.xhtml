@@ -21,94 +21,84 @@
 			<ui:param name="visibleC" value="none" />
 		</ui:include>
 		
-	<h:form>
-    <p:panel id="panel" header="Nuevo Cliente">
+		<h:form>
+    <p:panel id="panel" header="Nuevo cliente">
  
         <p:messages id="msgs" />
  
-        <h:panelGrid>
-        	
-        	<p:row>
-			<p:column>
-        	<!-- Nombre -->
+        <h:panelGrid columns="3" cellpadding="5">
             <p:outputLabel for="nombre" value="Nombre:" />
-            </p:column>
-            <p:column>
-            <p:inputText id="nombre" value="#{userView.firstname}" required="true" label="Nombre">
+            <p:inputText id="nombre" value="#{clienteBean.nombre}" required="true" label="Nombre">
                 <f:validateLength minimum="2" />
             </p:inputText>
-            </p:column>
             <p:message for="nombre" display="icon" />
-            </p:row>
-
-			<p:row>
-			<p:column>
- 			<!-- Dirección -->
-            <p:outputLabel for="direccion" value="Dirección:" />
-            </p:column>
-            <p:column>
-            <p:inputText id="direccion" value="#{userView.lastname}" label="direccion" required="true">
+            
+            <p:outputLabel for="pais" value="Pais:" />
+            <p:inputText id="pais" value="#{clienteBean.pais}" required="true" label="Pais">
                 <f:validateLength minimum="2" />
             </p:inputText>
-            </p:column>
-            <p:message for="direccion" display="icon" />
-            </p:row>
-
-			<p:row>
-			<p:column>
-            <!-- Contacto -->
+            <p:message for="pais" display="icon" />
+            
+            <p:outputLabel for="estado" value="Estado:" />
+            <p:inputText id="estado" value="#{clienteBean.estado}" required="true" label="Estado">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="estado" display="icon" />
+            
+            <p:outputLabel for="ciudad" value="Ciudad:" />
+            <p:inputText id="ciudad" value="#{clienteBean.ciudad}" required="true" label="Ciudad">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="ciudad" display="icon" />
+            
+            <p:outputLabel for="colonia" value="Colonia:" />
+            <p:inputText id="colonia" value="#{clienteBean.colonia}" required="true" label="Colonia">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="colonia" display="icon" />
+            
+            <p:outputLabel for="calle" value="Calle:" />
+            <p:inputText id="calle" value="#{clienteBean.calle}" required="true" label="Calle">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="calle" display="icon" />
+            
+            <p:outputLabel for="numero" value="Numero:" />
+            <p:inputText id="numero" value="#{clienteBean.numero}" required="true" label="Numero">
+                <f:validateRegex pattern="^[0-9]+$" />
+            </p:inputText>
+            <p:message for="numero" display="icon" />
+            
             <p:outputLabel for="contacto" value="Contacto:" />
-            </p:column>
-            <p:column>
-            <p:inputText id="contacto" value="#{userView.lastname}" label="contacto" required="true">
+            <p:inputText id="contacto" value="#{clienteBean.contacto}" label="Contacto" required="true">
                 <f:validateLength minimum="2" />
+                <p:ajax update="msgLastname" event="keyup" />
             </p:inputText>
-            </p:column>
-            <p:message for="contacto" display="icon" />
-            </p:row>
+            <p:message for="contacto" id="msgLastname" display="icon" />
             
-            <p:row>
-        	<p:column >
-            <!-- Teléfono -->
-            <p:outputLabel for="telefono" value="Teléfono:" />
-            </p:column>
-            <p:column>
-            <p:inputText id="telefono" value="#{userView.lastname}" label="telefono" required="true">
-                <f:validateLength minimum="2" />
+            <p:outputLabel for="telefono" value="Telefono:" />
+            <p:inputText id="telefono" value="#{clienteBean.telefono}" required="true" label="Telefono">
+                <f:validateRegex pattern="^[0-9]+$" />
             </p:inputText>
-            </p:column>
             <p:message for="telefono" display="icon" />
-            </p:row>
             
-            <p:row>
-        	<p:column >
-            <!-- Email -->
             <p:outputLabel for="email" value="Email:" />
-            </p:column>
-            <p:column>
-            <p:inputText id="email" value="#{userView.lastname}" label="email" required="true">
+            <p:inputText id="email" value="#{clienteBean.email}" required="true" label="Email">
                 <f:validateLength minimum="2" />
             </p:inputText>
-            </p:column>
             <p:message for="email" display="icon" />
-            </p:row>
             
-            <p:row>
-        	<p:column >
-            <!-- RFC -->
-            <p:outputLabel for="rfc" value="RFC:" style="width:30%"/>
-            </p:column>
-            <p:column>
-            <p:inputText id="rfc" value="#{userView.lastname}" label="rfc" required="true">
+            <p:outputLabel for="rfc" value="Rfc:" />
+            <p:inputText id="rfc" value="#{clienteBean.rfc}" required="true" label="RFC">
                 <f:validateLength minimum="2" />
             </p:inputText>
-            </p:column>
             <p:message for="rfc" display="icon" />
-            </p:row>
  
         </h:panelGrid>
  
-        <p:commandButton value="Guardar" update="panel" actionListener="#{userView.save}" icon="ui-icon-check" />
+        <p:commandButton type="submit" value="Registrar"  actionListener="#{clienteBean.save}" icon="ui-icon-check" update="panel">
+        	<p:resetInput target="panel" />
+        </p:commandButton>
     </p:panel>
 </h:form>
 	</ui:define>
