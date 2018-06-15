@@ -8,15 +8,26 @@ import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
 import elabuelonicolas.bd.domain.Proveedor;
 import elabuelonicolas.service.proveedor.ProveedorService;
 
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ViewScoped;
+
+
 @Named
+@ViewScoped
 public class ProveedorBean {
 	@Inject
 	private ProveedorService proveedorService;
-	private List<Proveedor> proveedorList;
+	private List<Proveedor> proveedorList;	
+	private List<Proveedor> filteredProv;
 
+
+	@PostConstruct
 	public List<Proveedor> getProveedorList() {
 		if (proveedorList == null)
 			setProveedorList(proveedorService.findAll());
@@ -30,7 +41,7 @@ public class ProveedorBean {
 
 	public void onRowEdit(RowEditEvent event) {
 		Proveedor proveedor = ((Proveedor) event.getObject());
-		System.out.println("Datos proveedor: " + proveedor.getId());
+		System.out.println("Datos proveedorEdit: " + proveedor.getId());
 		proveedorService.update(proveedor);
 
 		FacesMessage msg = new FacesMessage("Proveedor editado", proveedor.getId()
@@ -60,5 +71,31 @@ public class ProveedorBean {
 		proveedorList.remove(order);
 		proveedorService.delete(order.getId());
 		return null;
+	}
+	
+	public void onRowSelect(SelectEvent event) {
+		Proveedor proveedor = ((Proveedor) event.getObject());
+		System.out.println("Datos proveedorSelect: " + proveedor.getId());
+		proveedorService.update(proveedor); 
+		
+		FacesMessage msg = new FacesMessage("Proveedor seleccionado", proveedor.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public void onRowUnselect(UnselectEvent event) {
+		Proveedor proveedor = ((Proveedor) event.getObject());
+		System.out.println("Datos proveedorUnselect: " + proveedor.getId());
+		proveedorService.update(proveedor); 
+		
+		FacesMessage msg = new FacesMessage("Proveedor deseleccionado", proveedor.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public List<Proveedor> getFilteredProveedor(){
+		return filteredProv;
+	}
+	
+	public void setFilteredProveedor(List<Proveedor> filteredProv) {
+		this.filteredProv = filteredProv;
 	}
 }

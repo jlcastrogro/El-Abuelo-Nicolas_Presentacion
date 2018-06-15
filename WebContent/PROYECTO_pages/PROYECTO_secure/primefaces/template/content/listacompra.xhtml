@@ -14,7 +14,8 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Lista de Compras"></ui:param>
-			<ui:param name="descripcion" value="Página de control de Lista de Compras" />
+			<ui:param name="descripcion"
+				value="Página de control de Lista de Compras" />
 			<ui:param name="archivoA" value='updateListacompra.xhtml' />
 			<ui:param name="archivoC" value='createListacompra.xhtml' />
 			<ui:param name="archivoE" value='deleteListacompra.xhtml' />
@@ -23,68 +24,46 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="listacompra" var="listacmpr"
 				value="#{listacompraBean.getListacompraList()}" editable="false"
-				style="margin-bottom:20px">
+				widgetVar="listacompraTab" rowKey="#{listacmpr.id}"
+				resizableColumns="true" selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{listacompraBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect"
+					listener="#{listacompraBean.onRowUnselect}" update=":form:msgs" />
+
 				<f:facet name="header">
-				Clientes
-			</f:facet>
-				<p:column headerText="Id" style="width:50px">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="listacompraInput" value="#{listacmpr.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+				Lista de Compras
+				<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('listacompraTab').filter()" style="width:150px"
+							placeholder="" />
+					</p:outputPanel>
+				</f:facet>
+				<p:column headerText="Id" sortBy="#{listacmpr.id}"
+					filterBy="#{listacmpr.id}">
+					<h:outputText value="#{listacmpr.id}" />
 				</p:column>
 
-				<p:column headerText="Id Compra">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.idcompra}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.idcompra}" style="width:100%"
-								label="IdCompra" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id Compra" sortBy="#{listacmpr.idcompra}"
+					filterBy="#{listacmpr.idcompra}">
+					<h:outputText value="#{listacmpr.idcompra}" />
 				</p:column>
 
-				<p:column headerText="Id Producto">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.idproducto}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.idproducto}" style="width:100%"
-								label="IdProducto" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id Producto" sortBy="#{listacmpr.idproducto}"
+					filterBy="#{listacmpr.idproducto}">
+					<h:outputText value="#{listacmpr.idproducto}" />
 				</p:column>
 
-				<p:column headerText="Cantidad">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.cantidad}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.cantidad}" style="width:100%"
-								label="Cantidad" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Cantidad" sortBy="#{listacmpr.cantidad}"
+					filterBy="#{listacmpr.cantidad}">
+					<h:outputText value="#{listacmpr.cantidad}" />
 				</p:column>
 
-				<p:column headerText="Subtotal">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.subtotal}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.subtotal}" style="width:100%"
-								label="Subtotal" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Subtotal" sortBy="#{listacmpr.subtotal}"
+					filterBy="#{listacmpr.subtotal}">
+					<h:outputText value="#{listacmpr.subtotal}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

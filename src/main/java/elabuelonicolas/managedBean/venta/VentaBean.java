@@ -1,22 +1,30 @@
 package elabuelonicolas.managedBean.venta;
 
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 import elabuelonicolas.bd.domain.Venta;
 import elabuelonicolas.service.venta.VentaService;
 
 @Named
+@ViewScoped
 public class VentaBean {
 	@Inject
 	VentaService ventasService;
 	private List<Venta> ventasList;
+	private List<Venta> filteredVen;
 
+	@PostConstruct
 	public List<Venta> getVentaList() {
 		if (ventasList == null)
 			setVentaList(ventasService.findAll());
@@ -60,5 +68,31 @@ public class VentaBean {
 		ventasList.remove(order);
 		ventasService.delete(order.getId());
 		return null;
+	}
+	
+	public void onRowSelect(SelectEvent event) {
+		Venta venta = ((Venta) event.getObject());
+		System.out.println("Datos ventaSelect: " + venta.getId());
+		ventasService.update(venta); 
+		
+		FacesMessage msg = new FacesMessage("Venta seleccionada", venta.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public void onRowUnselect(UnselectEvent event) {
+		Venta venta = ((Venta) event.getObject());
+		System.out.println("Datos proveedorUnselect: " + venta.getId());
+		ventasService.update(venta); 
+		
+		FacesMessage msg = new FacesMessage("Venta deseleccionada", venta.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public List<Venta> getFilteredVenta(){
+		return filteredVen;
+	}
+	
+	public void setFilteredVenta(List<Venta> filteredVen) {
+		this.filteredVen = filteredVen;
 	}
 }

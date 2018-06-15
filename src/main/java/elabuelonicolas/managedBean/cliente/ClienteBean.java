@@ -3,16 +3,23 @@ package elabuelonicolas.managedBean.cliente;
 
 import javax.faces.bean.ManagedBean;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
 import elabuelonicolas.bd.domain.Cliente;
 import elabuelonicolas.service.cliente.ClienteService;
 
 @Named
+@ViewScoped
 public class ClienteBean {
 	@Inject
 	ClienteService clienteService;
@@ -30,7 +37,9 @@ public class ClienteBean {
     private String colonia;
     private String calle;
     private String numero;
+	private List<Cliente> filteredCli;
 
+	@PostConstruct
 	public List<Cliente> getClienteList() {
 		if (clienteList == null)
 			setClienteList(clienteService.findAll());
@@ -203,4 +212,30 @@ public class ClienteBean {
         this.calle = null;
         this.numero = null;
     }
+	
+	public void onRowSelect(SelectEvent event) {
+		Cliente cliente = ((Cliente) event.getObject());
+		System.out.println("Datos clienteSelect: " + cliente.getId());
+		clienteService.update(cliente); 
+		
+		FacesMessage msg = new FacesMessage("Cliente seleccionado", cliente.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public void onRowUnselect(UnselectEvent event) {
+		Cliente cliente = ((Cliente) event.getObject());
+		System.out.println("Datos clienteUnselect: " + cliente.getId());
+		clienteService.update(cliente); 
+		
+		FacesMessage msg = new FacesMessage("Cliente deseleccionado", cliente.getId().toString());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public List<Cliente> getFilteredCliente(){
+		return filteredCli;
+	}
+	
+	public void setFilteredCliente(List<Cliente> filteredCli) {
+		this.filteredCli = filteredCli;
+	}
 }
