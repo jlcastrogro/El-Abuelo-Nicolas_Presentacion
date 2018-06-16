@@ -1,9 +1,6 @@
 package elabuelonicolas.managedBean.cliente;
 
-
-import javax.faces.bean.ManagedBean;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
@@ -14,7 +11,6 @@ import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
-
 import elabuelonicolas.bd.domain.Cliente;
 import elabuelonicolas.service.cliente.ClienteService;
 
@@ -181,7 +177,6 @@ public class ClienteBean {
     	//Insertar cliente
         Cliente nuevoCliente = new Cliente();
         nuevoCliente.setNombre(nombre);
-        nuevoCliente.setIddireccion(20); //Obtener id de la ultima dirección insertada ala tabla
         nuevoCliente.setContacto(contacto);
         nuevoCliente.setTelefono(telefono);
         nuevoCliente.setEmail(email);

@@ -2,13 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<mappers>
-		<mapper resource="elabuelonicolas/bd/mappers/CompraMapper.xml" />
-		<mapper resource="elabuelonicolas/bd/mappers/ListacompraMapper.xml" />
-		<mapper resource="elabuelonicolas/bd/mappers/ListaventaMapper.xml" />
-		<mapper resource="elabuelonicolas/bd/mappers/VentaMapper.xml" />
 		<mapper resource="elabuelonicolas/bd/mappers/ClienteMapper.xml" />
-		<mapper resource="elabuelonicolas/bd/mappers/ProveedorMapper.xml" />
-		<mapper resource="elabuelonicolas/bd/mappers/ProductoMapper.xml" />
-		<mapper resource="elabuelonicolas/bd/mappers/DireccionMapper.xml" />
+		<mapper resource="elabuelonicolas/bd/mappers/CompraMapper.xml" />
+		<mapper	resource="elabuelonicolas/bd/mappers/ListacompraMapper.xml" />
+		<mapper	resource="elabuelonicolas/bd/mappers/ListaventaMapper.xml" />
+		<mapper	resource="elabuelonicolas/bd/mappers/ProductoMapper.xml" />
+		<mapper	resource="elabuelonicolas/bd/mappers/ProveedorMapper.xml" />
+		<mapper resource="elabuelonicolas/bd/mappers/VentaMapper.xml" />
 	</mappers>
 </configuration>
