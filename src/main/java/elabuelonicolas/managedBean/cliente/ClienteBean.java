@@ -1,8 +1,6 @@
 package elabuelonicolas.managedBean.cliente;
 
-
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
@@ -13,7 +11,6 @@ import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
-
 import elabuelonicolas.bd.domain.Cliente;
 import elabuelonicolas.service.cliente.ClienteService;
 
