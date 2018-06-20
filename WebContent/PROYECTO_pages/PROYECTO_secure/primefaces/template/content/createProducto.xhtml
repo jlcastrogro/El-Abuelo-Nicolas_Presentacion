@@ -20,6 +20,51 @@
 			<ui:param name="archivoE" value='deleteProducto.xhtml' />
 			<ui:param name="visibleC" value="none" />
 		</ui:include>
+		
+		<h:form>
+    <p:panel id="panel" header="Nuevo producto">
+ 
+        <p:messages id="msgs" />
+ 
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="tipo" value="Tipo:" />
+            <p:inputText id="tipo" value="#{productoBean.tipo}" required="true" label="Tipo">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="tipo" display="icon" />
+            
+            <p:outputLabel for="marca" value="Marca:" />
+            <p:inputText id="marca" value="#{productoBean.marca}" required="true" label="Marca">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="marca" display="icon" />
+            
+            <p:outputLabel for="costocompra" value="Costocompra:" />
+            <p:inputText id="costocompra" value="#{productoBean.costocompra}" required="true" label="Costocompra">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="costocompra" display="icon" />
+            
+            <p:outputLabel for="costoventa" value="Costoventa:" />
+            <p:inputText id="costoventa" value="#{productoBean.costoventa}" required="true" label="Costoventa">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="costoventa" display="icon" />
+            
+            <p:outputLabel for="existencia" value="Existencia:" />
+            <p:inputText id="existencia" value="#{productoBean.existencia}" required="true" label="existencia">
+                <f:validateRegex pattern="^[0-9]+$" />
+            </p:inputText>
+            <p:message for="existencia" display="icon" />
+            
+ 
+        </h:panelGrid>
+ 
+        <p:commandButton type="submit" value="Registrar"  actionListener="#{productoBean.save}" icon="ui-icon-check" update="panel">
+        	<p:resetInput target="panel" />
+        </p:commandButton>
+    </p:panel>
+</h:form>
 	</ui:define>
 </ui:composition>
 </html>

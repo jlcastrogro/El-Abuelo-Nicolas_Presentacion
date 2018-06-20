@@ -20,20 +20,20 @@ public class ClienteBean {
 	@Inject
 	ClienteService clienteService;
 	private List<Cliente> clienteList;
+	private List<Cliente> filteredCli;
 	//Campos cliente
 	private String nombre;
     private String contacto;
     private String telefono;
     private String email;
     private String rfc;
-    //Campos direccion
-    private String pais;
     private String estado;
-    private String ciudad;
-    private String colonia;
+    private String municipio;
+    private String localidad;
+    private String codigopostal;
+    private String asentamiento;
     private String calle;
     private String numero;
-	private List<Cliente> filteredCli;
 
 	@PostConstruct
 	public List<Cliente> getClienteList() {
@@ -120,15 +120,7 @@ public class ClienteBean {
     public void setRfc(String rfc) {
         this.rfc = rfc;
     }
-    
-    public String getPais() {
-        return pais;
-    }
-    
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-    
+        
     public String getEstado() {
         return estado;
     }
@@ -136,21 +128,37 @@ public class ClienteBean {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    
+    public String getMunicipio() {
+        return municipio;
+    }
+    
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
  
-    public String getCiudad() {
-        return ciudad;
+    public String getLocalidad() {
+        return localidad;
     }
     
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
     }
     
-    public String getColonia() {
-        return colonia;
+    public String getCodigopostal() {
+        return codigopostal;
     }
     
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
+    public void setCodigopostal(String codigopostal) {
+        this.codigopostal = codigopostal;
+    }
+    
+    public String getAsentamiento() {
+        return asentamiento;
+    }
+    
+    public void setAsentamiento(String asentamiento) {
+        this.asentamiento = asentamiento;
     }
     
     public String getCalle() {
@@ -172,8 +180,6 @@ public class ClienteBean {
     
     public void save() {
         
-    	//Insertar dirección
-    	
     	//Insertar cliente
         Cliente nuevoCliente = new Cliente();
         nuevoCliente.setNombre(nombre);
@@ -181,6 +187,13 @@ public class ClienteBean {
         nuevoCliente.setTelefono(telefono);
         nuevoCliente.setEmail(email);
         nuevoCliente.setRfc(rfc);
+        nuevoCliente.setEstado(estado);
+        nuevoCliente.setMunicipio(municipio);
+        nuevoCliente.setLocalidad(localidad);
+        nuevoCliente.setCodigopostal(Integer.parseInt(codigopostal));
+        nuevoCliente.setAsentamiento(asentamiento);
+        nuevoCliente.setCalle(calle);
+        nuevoCliente.setNumero(Integer.parseInt(numero));
         
         clienteService.create(nuevoCliente);
         nuevoCliente.setId(clienteService.last().getId()); 
@@ -193,17 +206,18 @@ public class ClienteBean {
        
     }
     
-    @SuppressWarnings("null")
+    
 	public void resetFormulario() {
     	this.nombre = null;
         this.contacto = null;
         this.telefono = null;
         this.email = null;
         this.rfc = null;
-        this.pais = null;
         this.estado = null;
-        this.ciudad = null;
-        this.colonia = null;
+        this.municipio = null;
+        this.localidad = null;
+        this.codigopostal = null;
+        this.asentamiento = null;
         this.calle = null;
         this.numero = null;
     }

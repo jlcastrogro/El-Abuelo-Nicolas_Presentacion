@@ -33,42 +33,6 @@
             </p:inputText>
             <p:message for="nombre" display="icon" />
             
-            <p:outputLabel for="pais" value="Pais:" />
-            <p:inputText id="pais" value="#{clienteBean.pais}" required="true" label="Pais">
-                <f:validateLength minimum="2" />
-            </p:inputText>
-            <p:message for="pais" display="icon" />
-            
-            <p:outputLabel for="estado" value="Estado:" />
-            <p:inputText id="estado" value="#{clienteBean.estado}" required="true" label="Estado">
-                <f:validateLength minimum="2" />
-            </p:inputText>
-            <p:message for="estado" display="icon" />
-            
-            <p:outputLabel for="ciudad" value="Ciudad:" />
-            <p:inputText id="ciudad" value="#{clienteBean.ciudad}" required="true" label="Ciudad">
-                <f:validateLength minimum="2" />
-            </p:inputText>
-            <p:message for="ciudad" display="icon" />
-            
-            <p:outputLabel for="colonia" value="Colonia:" />
-            <p:inputText id="colonia" value="#{clienteBean.colonia}" required="true" label="Colonia">
-                <f:validateLength minimum="2" />
-            </p:inputText>
-            <p:message for="colonia" display="icon" />
-            
-            <p:outputLabel for="calle" value="Calle:" />
-            <p:inputText id="calle" value="#{clienteBean.calle}" required="true" label="Calle">
-                <f:validateLength minimum="2" />
-            </p:inputText>
-            <p:message for="calle" display="icon" />
-            
-            <p:outputLabel for="numero" value="Numero:" />
-            <p:inputText id="numero" value="#{clienteBean.numero}" required="true" label="Numero">
-                <f:validateRegex pattern="^[0-9]+$" />
-            </p:inputText>
-            <p:message for="numero" display="icon" />
-            
             <p:outputLabel for="contacto" value="Contacto:" />
             <p:inputText id="contacto" value="#{clienteBean.contacto}" label="Contacto" required="true">
                 <f:validateLength minimum="2" />
@@ -93,7 +57,49 @@
                 <f:validateLength minimum="2" />
             </p:inputText>
             <p:message for="rfc" display="icon" />
- 
+            
+            <p:outputLabel for="estado" value="Estado:" />
+            <p:inputText id="estado" value="#{clienteBean.estado}" required="true" label="Estado">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="estado" display="icon" />
+            
+            <p:outputLabel for="municipio" value="Municipio:" />
+            <p:inputText id="municipio" value="#{clienteBean.municipio}" required="true" label="Municipio">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="municipio" display="icon" />
+                        
+            <p:outputLabel for="localidad" value="Localidad:" />
+            <p:inputText id="localidad" value="#{clienteBean.localidad}" required="true" label="localidad">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="localidad" display="icon" />
+            
+            <p:outputLabel for="codigopostal" value="Codigopostal:" />
+            <p:inputText id="codigopostal" value="#{clienteBean.codigopostal}" required="true" label="Codigopostal">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="codigopostal" display="icon" />
+            
+            <p:outputLabel for="asentamiento" value="Asentamiento:" />
+            <p:inputText id="asentamiento" value="#{clienteBean.asentamiento}" required="true" label="Asentamiento">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="asentamiento" display="icon" />
+            
+            <p:outputLabel for="calle" value="Calle:" />
+            <p:inputText id="calle" value="#{clienteBean.calle}" required="true" label="Calle">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="calle" display="icon" />
+            
+            <p:outputLabel for="numero" value="Numero:" />
+            <p:inputText id="numero" value="#{clienteBean.numero}" required="true" label="Numero">
+                <f:validateRegex pattern="^[0-9]+$" />
+            </p:inputText>
+            <p:message for="numero" display="icon" />
+             
         </h:panelGrid>
  
         <p:commandButton type="submit" value="Registrar"  actionListener="#{clienteBean.save}" icon="ui-icon-check" update="panel">
