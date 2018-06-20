@@ -19,6 +19,12 @@ public class ProductoBean {
 	ProductoService productoService;
 	private List<Producto> productoList;
 	private List<Producto> filteredProd;
+	//Campos producto
+	private String tipo;
+    private String marca;
+    private String costocompra;
+    private String costoventa;
+    private String existencia;
 
 	public List<Producto> getProductoList() {
 		if (productoList == null)
@@ -63,6 +69,75 @@ public class ProductoBean {
 		productoService.delete(order.getId());
 		return null;
 	}
+	
+	public String getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    public String getMarca() {
+        return marca;
+    }
+    
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    
+    public String getCostocompra() {
+        return costocompra;
+    }
+    
+    public void setCostocompra(String costocompra) {
+        this.costocompra = costocompra;
+    }
+    
+    public String getCostoventa() {
+        return costoventa;
+    }
+    
+    public void setCostoventa(String costoventa) {
+        this.costoventa = costoventa;
+    }
+
+    public String getExistencia() {
+        return existencia;
+    }
+    
+    public void setExistencia(String existencia) {
+        this.existencia = existencia;
+    }
+    
+    public void save() {
+        
+    	//Insertar producto
+        Producto nuevoProducto = new Producto();
+        nuevoProducto.setTipo(tipo);
+        nuevoProducto.setMarca(marca);
+        nuevoProducto.setCostocompra(Double.parseDouble(costocompra));
+        nuevoProducto.setCostoventa(Double.parseDouble(costoventa));
+        nuevoProducto.setExistencia(Integer.parseInt(existencia));
+
+        
+        productoService.create(nuevoProducto);
+        nuevoProducto.setId(productoService.last().getId()); 
+        productoList.add(nuevoProducto);
+       
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Producto " + tipo + " registrado "));
+        
+        resetFormulario();   
+    }
+    
+	public void resetFormulario() {
+    	this.tipo = null;
+        this.marca = null;
+        this.costocompra = null;
+        this.costoventa = null;
+        this.existencia = null;
+    }
 	
 	public void onRowSelect(SelectEvent event) {
 		Producto producto = ((Producto) event.getObject());
