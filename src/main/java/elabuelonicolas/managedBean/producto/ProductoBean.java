@@ -1,5 +1,6 @@
 package elabuelonicolas.managedBean.producto;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -25,6 +26,11 @@ public class ProductoBean {
     private String costocompra;
     private String costoventa;
     private String existencia;
+    
+    private ArrayList<String> tipos;
+    private ArrayList<Double> costos;
+    private ArrayList<Double> costosReal;
+    private ArrayList<Integer> ids;
 
 	public List<Producto> getProductoList() {
 		if (productoList == null)
@@ -119,7 +125,7 @@ public class ProductoBean {
         nuevoProducto.setCostocompra(Double.parseDouble(costocompra));
         nuevoProducto.setCostoventa(Double.parseDouble(costoventa));
         nuevoProducto.setExistencia(Integer.parseInt(existencia));
-
+        nuevoProducto.setStatus(1);
         
         productoService.create(nuevoProducto);
         nuevoProducto.setId(productoService.last().getId()); 
@@ -164,4 +170,47 @@ public class ProductoBean {
 	public void setFilteredProducto(List<Producto> filteredProd) {
 		this.filteredProd = filteredProd;
 	}
+	
+	public ArrayList<String> getTipos(){
+		getProductoList();
+		tipos = new ArrayList<String>();
+		for(int i = 0; i < productoList.size(); i++) {
+			tipos.add(productoList.get(i).getTipo() + " " + productoList.get(i).getMarca());
+		}
+		
+		return tipos;
+	}
+	
+	//Costoventa
+	public ArrayList<Double> getCostos(){
+		getProductoList();
+		costos = new ArrayList<Double>();
+		for(int i = 0; i < productoList.size(); i++) {
+			costos.add(productoList.get(i).getCostoventa());
+		}
+		
+		return costos;
+	}
+	
+	//Costocompra
+	public ArrayList<Double> getCostosReal(){
+		getProductoList();
+		costosReal = new ArrayList<Double>();
+		for(int i = 0; i < productoList.size(); i++) {
+			costosReal.add(productoList.get(i).getCostocompra());
+		}
+		
+		return costosReal;
+	}
+	
+	public ArrayList<Integer> getIds(){
+		getProductoList();
+		ids = new ArrayList<Integer>();
+		for(int i = 0; i < productoList.size(); i++) {
+			ids.add(productoList.get(i).getId());
+		}
+		
+		return ids;
+	}
+
 }

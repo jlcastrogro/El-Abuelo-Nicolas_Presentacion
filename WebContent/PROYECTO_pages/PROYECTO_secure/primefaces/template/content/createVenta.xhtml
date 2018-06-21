@@ -14,12 +14,45 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Registrar"></ui:param>
-			<ui:param name="descripcion" value="Formulario de Compra" />
+			<ui:param name="descripcion" value="Formulario de Venta" />
 			<ui:param name="archivoC" value='createVenta.xhtml' />
 			<ui:param name="archivoA" value='updateVenta.xhtml' />
 			<ui:param name="archivoE" value='deleteVenta.xhtml' />
 			<ui:param name="visibleC" value="none" />
 		</ui:include>
+		<h:form>
+		<p:panel id="panel" header="Nueva venta">
+		<p:messages id="msgs" />
+		
+		    <h:panelGrid columns="1" cellpadding="5">
+
+		        <p:outputLabel for="cliente" value="Cliente:" />
+		        <p:selectOneMenu id="cliente" value="#{ventaBean.option}" lazy="true" style="width:125px">
+		            <f:selectItems value="#{clienteBean.getClienteNombre()}"   />
+		        </p:selectOneMenu>
+		          
+		       	<h:panelGroup id="productos">
+				        <ui:repeat value="#{productoBean.tipos}" varStatus="loop">
+				        <tr>
+				        	<td>
+				            <p:outputLabel for="producto" value="#{productoBean.tipos[loop.index]}" />
+				            </td>
+				            <td>
+				            <p:inputText id="producto" value="#{ventaBean.cantidad}" label="Cantidad" partialSubmit="true" process="cantidad"/>
+				            </td>
+				            <td>
+				            <p:outputLabel for="producto" value="#{productoBean.costos[loop.index]} c/u" />
+				            </td>
+				     	</tr>	
+				        </ui:repeat>
+				</h:panelGroup>	
+				
+			</h:panelGrid>
+			<p:commandButton value="Registrar" actionListener="#{ventaBean.save(clienteBean.getClienteList(), productoBean.costos, productoBean.costosReal)}" icon="ui-icon-check" update="panel">
+				<p:resetInput target="panel" />
+			</p:commandButton>
+		</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>
