@@ -14,73 +14,48 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Ventas"></ui:param>
-			<ui:param name="descripcion" value="Para realizar la actualización de un registro, en la última columna de la derecha, hacer clic sobre 
+			<ui:param name="descripcion"
+				value="Para realizar la actualización de un registro, en la última columna de la derecha, hacer clic sobre 
 				el ícono de lápiz para editar. Al finalizar la edición, regresar a la última columna de la derecha y hacer 
 				clic sobre el ícono de aceptar." />
 			<ui:param name="archivoA" value='updateVenta.xhtml' />
 			<ui:param name="archivoC" value='createVenta.xhtml' />
 			<ui:param name="archivoE" value='deleteVenta.xhtml' />
-			<ui:param name="visibleA" value= "none" />			
+			<ui:param name="visibleA" value="none" />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="venta" var="ven" value="#{ventaBean.getVentaList()}"
-				editable="true" style="margin-bottom:20px">
+				editable="true" widgetVar="updateventaTab" rowKey="#{ven.id}"
+				resizableColumns="true" selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{ventaBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{ventaBean.onRowUnselect}"
+					update=":form:msgs" />
+
 				<f:facet name="header">
 					Ventas
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('updateventaTab').filter()" style="width:150px"
+							placeholder="" />
+					</p:outputPanel>
 				</f:facet>
-				<p:ajax event="rowEdit" listener="#{ventaBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{ventaBean.onRowCancel}"
-					update=":form:msgs" />
 
-				<p:column headerText="Id">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="ventasInput" value="#{ven.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id" sortBy="#{ven.id}" filterBy="#{ven.id}">
+					<h:outputText value="#{ven.id}" />
+				</p:column>
+				<p:column headerText="Cliente" sortBy="#{ven.nombre}" filterBy="#{ven.nombre}">
+					<h:outputText value="#{ven.nombre}" />
+				</p:column>
+				<p:column headerText="Fecha" sortBy="#{ven.fecha}" filterBy="#{ven.fecha}">
+					<h:outputText value="#{ven.fecha}" />
 				</p:column>
 
-
-				<p:column headerText="Id Cliente">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.idcliente}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.idcliente}" style="width:100%"
-								label="IdCliente" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
-				<p:column headerText="Fecha">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.fecha}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.fecha}" style="width:100%"
-								label="Fecha" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
-				<p:column headerText="Precio Total">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{ven.total}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.total}" style="width:100%"
-								label="Precio Total" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Precio Total" sortBy="#{ven.total}" filterBy="#{ven.total}">
+					<h:outputText value="#{ven.total}" />
 				</p:column>
 
 				<p:column style="width:32px">

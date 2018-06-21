@@ -20,6 +20,93 @@
 			<ui:param name="archivoE" value='deleteProveedor.xhtml' />
 			<ui:param name="visibleC" value="none" />
 		</ui:include>
+		<h:form>
+    <p:panel id="panel" header="Nuevo proveedor">
+ 
+        <p:messages id="msgs" />
+ 
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="nombre" value="Nombre:" />
+            <p:inputText id="nombre" value="#{proveedorBean.nombre}" required="true" label="Nombre">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="nombre" display="icon" />
+            
+            <p:outputLabel for="contacto" value="Contacto:" />
+            <p:inputText id="contacto" value="#{proveedorBean.contacto}" label="Contacto" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgLastname" event="keyup" />
+            </p:inputText>
+            <p:message for="contacto" id="msgLastname" display="icon" />
+            
+            <p:outputLabel for="telefono" value="Telefono:" />
+            <p:inputText id="telefono" value="#{proveedorBean.telefono}" required="true" label="Telefono">
+                <f:validateRegex pattern="^[0-9]+$" />
+            </p:inputText>
+            <p:message for="telefono" display="icon" />
+            
+            <p:outputLabel for="email" value="Email:" />
+            <p:inputText id="email" value="#{proveedorBean.email}" required="true" label="Email">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="email" display="icon" />
+            
+            <p:outputLabel for="rfc" value="Rfc:" />
+            <p:inputText id="rfc" value="#{proveedorBean.rfc}" required="true" label="RFC">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="rfc" display="icon" />
+            
+            <p:outputLabel for="estado" value="Estado:" />
+            <p:inputText id="estado" value="#{proveedorBean.estado}" required="true" label="Estado">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="estado" display="icon" />
+            
+            <p:outputLabel for="municipio" value="Municipio:" />
+            <p:inputText id="municipio" value="#{proveedorBean.municipio}" required="true" label="Municipio">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="municipio" display="icon" />
+                        
+            <p:outputLabel for="localidad" value="Localidad:" />
+            <p:inputText id="localidad" value="#{proveedorBean.localidad}" required="true" label="localidad">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="localidad" display="icon" />
+            
+            <p:outputLabel for="codigopostal" value="Codigopostal:" />
+            <p:inputText id="codigopostal" value="#{proveedorBean.codigopostal}" required="true" label="Codigopostal">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="codigopostal" display="icon" />
+            
+            <p:outputLabel for="asentamiento" value="Asentamiento:" />
+            <p:inputText id="asentamiento" value="#{proveedorBean.asentamiento}" required="true" label="Asentamiento">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="asentamiento" display="icon" />
+            
+            <p:outputLabel for="calle" value="Calle:" />
+            <p:inputText id="calle" value="#{proveedorBean.calle}" required="true" label="Calle">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="calle" display="icon" />
+            
+            <p:outputLabel for="numero" value="Numero:" />
+            <p:inputText id="numero" value="#{proveedorBean.numero}" required="true" label="Numero">
+                <f:validateRegex pattern="^[0-9]+$" />
+            </p:inputText>
+            <p:message for="numero" display="icon" />
+             
+        </h:panelGrid>
+ 
+        <p:commandButton type="submit" value="Registrar"  actionListener="#{proveedorBean.save}" icon="ui-icon-check" update="panel">
+        	<p:resetInput target="panel" />
+        </p:commandButton>
+    </p:panel>
+</h:form>
+		
 	</ui:define>
 </ui:composition>
 </html>
