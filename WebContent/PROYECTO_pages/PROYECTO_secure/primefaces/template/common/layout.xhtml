@@ -10,7 +10,12 @@
 	<title>El Abuelo Nicolás</title>
 	<meta charset="UTF-8" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="local.css" />
+	<h:outputStylesheet library="fonts" name="font-awesome.min.css"/>
+    <h:outputStylesheet library="fonts" name="ionicons.min.css"/>
+    <h:outputStylesheet library="css" name="Footer-Basic.css" />
+    <h:outputStylesheet library="css" name="Navbar-Fixed-Side.css" />
+    <h:outputStylesheet library="css" name="Navigation-Clean.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 <h:body>
 	<ui:insert name="header">
@@ -18,26 +23,31 @@
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/header.xhtml" />
 	</ui:insert>
 	<div class="container-fluid">
-		<div class="row">
-
+	
+		<div id="wrapper">
 			<ui:insert name="sideBar">
 				<ui:include	src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/sidebar.xhtml" />
 			</ui:insert>
-			<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-			<ui:insert name="content">
-				<ui:include
-					src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/content.xhtml" />
-			</ui:insert> <ui:insert name="footer">
-				<ui:include
-					src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/footer.xhtml" />
-			</ui:insert> </main>
+			<div class="page-content-wrapper">
+				<ui:insert name="content">
+					<ui:include
+						src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/content.xhtml" />
+				</ui:insert> <ui:insert name="footer">
+					<ui:include
+						src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/footer.xhtml" />
+				</ui:insert>
+			</div>
 		</div>
 	</div>
-	<h:outputScript library="js" name="jquery-3.3.1.min.js"></h:outputScript>
-	<h:outputScript>
-			$jq = jQuery.noConflict(true);
-		</h:outputScript>
+	<h:outputScript library="js" name="jquery.min.js"></h:outputScript>
 	<h:outputScript library="js" name="bootstrap.min.js"></h:outputScript>
+	<h:outputScript>
+		$ = jQuery;
+			$jq = jQuery.noConflict(true);
+	</h:outputScript>
+	
+	<h:outputScript library="js" name="Sidebar-Menu.js"></h:outputScript>
+	
 </h:body>
 
 </html>
