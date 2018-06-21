@@ -1,5 +1,6 @@
 package elabuelonicolas.managedBean.cliente;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -34,6 +35,9 @@ public class ClienteBean {
     private String asentamiento;
     private String calle;
     private String numero;
+    
+    private ArrayList<String> nombres;
+    private ArrayList<Integer> ids;
 
 	@PostConstruct
 	public List<Cliente> getClienteList() {
@@ -194,6 +198,7 @@ public class ClienteBean {
         nuevoCliente.setAsentamiento(asentamiento);
         nuevoCliente.setCalle(calle);
         nuevoCliente.setNumero(Integer.parseInt(numero));
+        nuevoCliente.setStatus(1);
         
         clienteService.create(nuevoCliente);
         nuevoCliente.setId(clienteService.last().getId()); 
@@ -247,4 +252,23 @@ public class ClienteBean {
 	public void setFilteredCliente(List<Cliente> filteredCli) {
 		this.filteredCli = filteredCli;
 	}
+	
+	public ArrayList<String> getClienteNombre(){
+		nombres = new ArrayList<String>();
+		for(int i = 0; i < clienteList.size(); i++) {
+			nombres.add(clienteList.get(i).getNombre());
+		}
+		
+		return nombres;
+	}
+	
+	public ArrayList<Integer> getClienteId(){
+		ids = new ArrayList<Integer>();
+		for(int i = 0; i < clienteList.size(); i++) {
+			ids.add(clienteList.get(i).getId());
+		}
+		
+		return ids;
+	}
+
 }

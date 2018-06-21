@@ -20,6 +20,40 @@
 			<ui:param name="archivoE" value='deleteCompra.xhtml' />
 			<ui:param name="visibleC" value="none" />
 		</ui:include>
+		
+		<h:form>
+		<p:panel id="panel" header="Nueva compra">
+		<p:messages id="msgs" />
+		
+		    <h:panelGrid columns="1" cellpadding="5">
+
+		        <p:outputLabel for="proveedor" value="Proveedor:" />
+		        <p:selectOneMenu id="proveedor" value="#{compraBean.option}" lazy="true" style="width:125px">
+		            <f:selectItems value="#{proveedorBean.getProveedorNombre()}"   />
+		        </p:selectOneMenu>
+		          
+		       	<h:panelGroup id="productos">
+				        <ui:repeat value="#{productoBean.tipos}" varStatus="loop">
+				        <tr>
+				        	<td>
+				            <p:outputLabel for="producto" value="#{productoBean.tipos[loop.index]}" />
+				            </td>
+				            <td>
+				            <p:inputText id="producto" value="#{compraBean.cantidad}" label="Cantidad" partialSubmit="true" process="cantidad"/>
+				            </td>
+				            <td>
+				            <p:outputLabel for="producto" value="#{productoBean.costosReal[loop.index]} c/u" />
+				            </td>
+				     	</tr>	
+				        </ui:repeat>
+				</h:panelGroup>	
+				
+			</h:panelGrid>
+			<p:commandButton value="Registrar" actionListener="#{compraBean.save(proveedorBean.getProveedorList(), productoBean.costosReal)}" icon="ui-icon-check" update="panel">
+				<p:resetInput target="panel" />
+			</p:commandButton>
+		</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>
