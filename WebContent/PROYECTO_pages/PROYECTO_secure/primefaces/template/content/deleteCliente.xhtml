@@ -26,34 +26,40 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="clientes" var="cli"
 				value="#{clienteBean.getClienteList()}" editable="false"
-				style="margin-bottom:20px">
+				widgetVar="deleteclienteTab" rowKey="#{cli.id}" resizableColumns="true"
+				selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{clienteBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{clienteBean.onRowUnselect}"
+					update=":form:msgs" />
+
 				<f:facet name="header">
-				Clientes
-			</f:facet>
-				<p:column headerText="Id" style="width: 50px;">
+					Eliminar Clientes
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter" onkeyup="PF('deleteclienteTab').filter()" style="width:150px" placeholder="" />
+					</p:outputPanel>
+				</f:facet>
+				<p:column headerText="Id" sortBy="#{cli.id}" filterBy="#{cli.id}">
 					<h:outputText value="#{cli.id}" />
 				</p:column>
-				<p:column headerText="Nombre">
+				<p:column headerText="Nombre" sortBy="#{cli.nombre}" filterBy="#{cli.nombre}">
 					<h:outputText value="#{cli.nombre}" />
 				</p:column>
-
-
-				<p:column headerText="Contacto">
+				
+				<p:column headerText="Contacto" sortBy="#{cli.contacto}" filterBy="#{cli.contacto}">
 					<h:outputText value="#{cli.contacto}" />
 				</p:column>
-
-				<p:column headerText="Teléfono">
+				<p:column headerText="Teléfono" sortBy="#{cli.telefono}" filterBy="#{cli.telefono}">
 					<h:outputText value="#{cli.telefono}" />
 				</p:column>
-
-				<p:column headerText="Email">
+				<p:column headerText="Email" sortBy="#{cli.email}" filterBy="#{cli.email}">
 					<h:outputText value="#{cli.email}" />
 				</p:column>
-
-				<p:column headerText="RFC">
+				<p:column headerText="RFC" sortBy="#{cli.rfc}" filterBy="#{cli.rfc}">
 					<h:outputText value="#{cli.rfc}" />
 				</p:column>
-
 				<p:column>
 					<p:commandButton value="Eliminar" icon="ui-icon-trash"
 						actionListener="#{clienteBean.deleteAction(cli)}"

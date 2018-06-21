@@ -25,9 +25,7 @@
 			<p:dataTable id="proveedores" var="prov"
 				value="#{proveedorBean.getProveedorList()}" editable="false"
 				widgetVar="proveedorTab" rowKey="#{prov.id}"
-				resizableColumns="true" selectionMode="single"
-				
-				>
+				resizableColumns="true" selectionMode="single">
 				
 				<p:ajax event="rowSelect" listener="#{proveedorBean.onRowSelect}" update=":form:msgs" />
 				<p:ajax event="rowUnselect" listener="#{proveedorBean.onRowUnselect}" update=":form:msgs" />
@@ -39,14 +37,12 @@
 						<p:inputText id="globalFilter" onkeyup="PF('proveedorTab').filter()" style="width:150px" placeholder="" />
 					</p:outputPanel>
 				</f:facet>
-				
 				<p:column headerText="Id" sortBy="#{prov.id}" filterBy="#{prov.id}">
 					<h:outputText value="#{prov.id}" />
 				</p:column>
 				<p:column headerText="Nombre" sortBy="#{prov.nombre}" filterBy="#{prov.nombre}">
 					<h:outputText value="#{prov.nombre}" />
 				</p:column>
-
 				<p:column headerText="Contacto" sortBy="#{prov.contacto}" filterBy="#{prov.contacto}">
 					<h:outputText value="#{prov.contacto}" />
 				</p:column>

@@ -34,7 +34,7 @@
 
 				<f:facet name="header">
 				Lista de Compras
-				<p:outputPanel>
+					<p:outputPanel>
 						<h:outputText value="Busqueda general:" />
 						<p:inputText id="globalFilter"
 							onkeyup="PF('listacompraTab').filter()" style="width:150px"
@@ -45,22 +45,22 @@
 					filterBy="#{listacmpr.id}">
 					<h:outputText value="#{listacmpr.id}" />
 				</p:column>
-
 				<p:column headerText="Id Compra" sortBy="#{listacmpr.idcompra}"
 					filterBy="#{listacmpr.idcompra}">
 					<h:outputText value="#{listacmpr.idcompra}" />
 				</p:column>
-
-				<p:column headerText="Id Producto" sortBy="#{listacmpr.idproducto}"
-					filterBy="#{listacmpr.idproducto}">
-					<h:outputText value="#{listacmpr.idproducto}" />
+				<p:column headerText="Producto" sortBy="#{listacmpr.tipo}"
+					filterBy="#{listacmpr.tipo}">
+					<h:outputText value="#{listacmpr.tipo}" />
 				</p:column>
-
+				<p:column headerText="Marca" sortBy="#{listacmpr.marca}"
+					filterBy="#{listacmpr.marca}">
+					<h:outputText value="#{listacmpr.marca}" />
+				</p:column>
 				<p:column headerText="Cantidad" sortBy="#{listacmpr.cantidad}"
 					filterBy="#{listacmpr.cantidad}">
 					<h:outputText value="#{listacmpr.cantidad}" />
 				</p:column>
-
 				<p:column headerText="Subtotal" sortBy="#{listacmpr.subtotal}"
 					filterBy="#{listacmpr.subtotal}">
 					<h:outputText value="#{listacmpr.subtotal}" />

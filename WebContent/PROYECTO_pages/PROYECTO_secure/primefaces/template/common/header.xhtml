@@ -6,21 +6,25 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition>
-	<nav
-		class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-	<button class="navbar-toggler navbar-toggler-right hidden-lg-up"
-		type="button" data-toggle="collapse"
-		data-target="#navbarsExampleDefault"
-		aria-controls="navbarsExampleDefault" aria-expanded="false"
-		aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<a class="navbar-brand"
-		href="#{request.contextPath}/PROYECTO_pages/PROYECTO_secure/primefaces/index.xhtml">
-		El Abuelo Nicolas
-	</a>
-	
-	</nav>
+	<div id="navbar" class="fixed-top">
+		<nav class="navbar navbar-light navbar-expand-md navigation-clean">
+    		<div class="container">
+        		<a id="menu-toggle" class="btn btn-link" href="#menu-toggle" role="button">
+            		<i class="fa fa-bars"></i>
+        		</a>
+        		<a href="#{request.contextPath}/PROYECTO_pages/PROYECTO_secure/primefaces/index.xhtml" class="navbar-brand">  El Abuelo Nicolas</a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon" style="background-color:#f59393;"></span></button>
+        		<div class="collapse navbar-collapse" id="navcol-1">
+            		<ul class="nav navbar-nav ml-auto">
+                		<li role="presentation" class="nav-item"><a href="#{request.contextPath}/PROYECTO_pages/PROYECTO_secure/primefaces/template/content/compra.xhtml" class="nav-link" style="color:rgb(255,255,255);">Compras</a></li>
+                		<li role="presentation" class="nav-item"><a href="#{request.contextPath}/PROYECTO_pages/PROYECTO_secure/primefaces/template/content/venta.xhtml" class="nav-link" style="color:rgb(255,255,255);">Ventas</a></li>
+                		<li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#{request.contextPath}/PROYECTO_pages/PROYECTO_secure/primefaces/index.xhtml" class="dropdown-toggle nav-link dropdown-toggle" style="color:rgb(255,255,255);">Admin</a>
+                			<div role="menu" class="dropdown-menu"><a role="presentation" href="#" class="dropdown-item">Perfil</a><a role="presentation" href="#" class="dropdown-item">About</a><a role="presentation" href="#" class="dropdown-item">Salir</a></div>
+                		</li>
+            		</ul>
+    			</div>
+    		</div>
+		</nav>
+	</div>		
 </ui:composition>
 
 </html>

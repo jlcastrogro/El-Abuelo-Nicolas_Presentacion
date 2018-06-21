@@ -26,27 +26,49 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="productos" var="prod"
 				value="#{productoBean.getProductoList()}" editable="false"
-				style="margin-bottom:20px">
+				widgetVar="deleteproductoTab" rowKey="#{prod.id}"
+				resizableColumns="true" selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{productoBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect"
+					listener="#{productorBean.onRowUnselect}" update=":form:msgs" />
+
 				<f:facet name="header">
 				Productos
-			</f:facet>
-				<p:column headerText="Id" style="width:50px">
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('deleteproductoTab').filter()" style="width:150px"
+							placeholder="" />
+					</p:outputPanel>
+				</f:facet>
+				<p:column headerText="Id" sortBy="#{prod.id}" filterBy="#{prod.id}">
 					<h:outputText value="#{prod.id}" />
 				</p:column>
 
-				<p:column headerText="Tipo">
+				<p:column headerText="Tipo" sortBy="#{prod.tipo}"
+					filterBy="#{prod.tipo}">
 					<h:outputText value="#{prod.tipo}" />
 				</p:column>
 
-				<p:column headerText="Marca">
+				<p:column headerText="Marca" sortBy="#{prod.marca}"
+					filterBy="#{prod.marca}">
 					<h:outputText value="#{prod.marca}" />
 				</p:column>
-
-				<p:column headerText="Costo">
-					<h:outputText value="#{prod.costo}" />
+        
+				<p:column headerText="Costo de Compra" sortBy="#{prod.costocompra}"
+					filterBy="#{prod.costocompra}">
+					<h:outputText value="#{prod.costocompra}" />
+				</p:column>
+				
+				<p:column headerText="Costo de Venta" sortBy="#{prod.costoventa}"
+					filterBy="#{prod.costoventa}">
+					<h:outputText value="#{prod.costoventa}" />
 				</p:column>
 
-				<p:column headerText="Existencia">
+				<p:column headerText="Existencia" sortBy="#{prod.existencia}"
+					filterBy="#{prod.existencia}">
 					<h:outputText value="#{prod.existencia}" />
 				</p:column>
 				<p:column>

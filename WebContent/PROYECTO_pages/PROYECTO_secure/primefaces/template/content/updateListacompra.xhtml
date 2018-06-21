@@ -14,7 +14,8 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Lista de Compras"></ui:param>
-			<ui:param name="descripcion" value="Para realizar la actualización de un registro, en la última columna de la derecha, hacer clic sobre 
+			<ui:param name="descripcion"
+				value="Para realizar la actualización de un registro, en la última columna de la derecha, hacer clic sobre 
 				el ícono de lápiz para editar. Al finalizar la edición, regresar a la última columna de la derecha y hacer 
 				clic sobre el ícono de aceptar." />
 			<ui:param name="archivoA" value='updateListacompra.xhtml' />
@@ -26,14 +27,23 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="listacompra" var="listacmpr"
 				value="#{listacompraBean.getListacompraList()}" editable="true"
-				style="margin-bottom:20px">
+				widgetVar="updatelistacompraTab" rowKey="#{listacmpr.id}"
+				resizableColumns="true" selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{listacompraBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect"
+					listener="#{listacompraBean.onRowUnselect}" update=":form:msgs" />
+
 				<f:facet name="header">
 				Clientes
-			</f:facet>
-				<p:ajax event="rowEdit" listener="#{listacompraBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel"
-					listener="#{listacompraBean.onRowCancel}" update=":form:msgs" />
+				<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('updatelistacompraTab').filter()" style="width:150px"
+							placeholder="" />
+					</p:outputPanel>
+				</f:facet>
 
 				<p:column headerText="Id">
 					<p:cellEditor>
@@ -46,55 +56,30 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-
-				<p:column headerText="Id Compra">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.idcompra}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.idcompra}" style="width:100%"
-								label="IdCompra" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id" sortBy="#{listacmpr.id}"
+					filterBy="#{listacmpr.id}">
+					<h:outputText value="#{listacmpr.id}" />
 				</p:column>
-
-				<p:column headerText="Id Producto">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.idproducto}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.idproducto}" style="width:100%"
-								label="IdProducto" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Id Compra" sortBy="#{listacmpr.idcompra}"
+					filterBy="#{listacmpr.idcompra}">
+					<h:outputText value="#{listacmpr.idcompra}" />
 				</p:column>
-
-				<p:column headerText="Cantidad">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.cantidad}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.cantidad}" style="width:100%"
-								label="Cantidad" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Producto" sortBy="#{listacmpr.tipo}"
+					filterBy="#{listacmpr.tipo}">
+					<h:outputText value="#{listacmpr.tipo}" />
 				</p:column>
-
-				<p:column headerText="Subtotal">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{listacmpr.subtotal}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{listacmpr.subtotal}" style="width:100%"
-								label="Subtotal" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Marca" sortBy="#{listacmpr.marca}"
+					filterBy="#{listacmpr.marca}">
+					<h:outputText value="#{listacmpr.marca}" />
 				</p:column>
-
+				<p:column headerText="Cantidad" sortBy="#{listacmpr.cantidad}"
+					filterBy="#{listacmpr.cantidad}">
+					<h:outputText value="#{listacmpr.cantidad}" />
+				</p:column>
+				<p:column headerText="Subtotal" sortBy="#{listacmpr.subtotal}"
+					filterBy="#{listacmpr.subtotal}">
+					<h:outputText value="#{listacmpr.subtotal}" />
+				</p:column>
 				<p:column style="width:32px">
 					<p:rowEditor />
 				</p:column>

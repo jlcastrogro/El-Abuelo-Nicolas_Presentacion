@@ -94,4 +94,5 @@ public class ListaventaBean {
 	public void setFilteredListaventa(List<Listaventa> filteredListaven) {
 		this.filteredLisven = filteredListaven;
 	}
+	
 }
