@@ -1,5 +1,6 @@
 package elabuelonicolas.managedBean.proveedor;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -40,6 +41,7 @@ public class ProveedorBean {
     private String calle;
     private String numero;
 
+    private ArrayList<String> proveedores;
 
 	@PostConstruct
 	public List<Proveedor> getProveedorList() {
@@ -200,6 +202,7 @@ public class ProveedorBean {
         nuevoProveedor.setAsentamiento(asentamiento);
         nuevoProveedor.setCalle(calle);
         nuevoProveedor.setNumero(Integer.parseInt(numero));
+        nuevoProveedor.setStatus(1);
         
         proveedorService.create(nuevoProveedor);
         nuevoProveedor.setId(proveedorService.last().getId()); 
@@ -252,5 +255,14 @@ public class ProveedorBean {
 	
 	public void setFilteredProveedor(List<Proveedor> filteredProv) {
 		this.filteredProv = filteredProv;
+	}
+	
+	public ArrayList<String> getProveedorNombre(){
+		proveedores = new ArrayList<String>();
+		for(int i = 0; i < proveedorList.size(); i++) {
+			proveedores.add(proveedorList.get(i).getNombre());
+		}
+		
+		return proveedores;
 	}
 }

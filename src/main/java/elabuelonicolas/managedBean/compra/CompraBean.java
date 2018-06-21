@@ -1,5 +1,6 @@
 package elabuelonicolas.managedBean.compra;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,10 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
+import elabuelonicolas.bd.domain.Cliente;
 import elabuelonicolas.bd.domain.Compra;
+import elabuelonicolas.bd.domain.Proveedor;
+import elabuelonicolas.bd.domain.Venta;
 import elabuelonicolas.service.compra.CompraService;
 
 @Named
@@ -23,6 +27,11 @@ public class CompraBean {
 	CompraService compraService;
 	private List<Compra> compraList;
 	private List<Compra> filteredComp;
+	
+	private ArrayList<String> cantidadList = new ArrayList<String>();
+	private int idProveedor;
+	private String cantidad = "0";
+	private double totalReal = 0.0;
 	
 	@PostConstruct		
 	public List<Compra> getCompraList() {
@@ -94,5 +103,79 @@ public class CompraBean {
 	
 	public void setFilteredCompra(List<Compra> filteredComp) {
 		this.filteredComp = filteredComp;
+	}
+	
+	private String option;
+    private List<String> options;
+
+    
+    public String getOption() {
+        return option;
+    }
+ 
+    public void setOption(String option) {
+        this.option = option;
+    }
+ 
+    public List<String> getOptions() {
+        return options;
+    }
+ 
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+   
+    public String getCantidad() {
+        return cantidad;
+    }
+    
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+        cantidadList.add(cantidad);
+    }
+    
+    public void save(List<Proveedor> proveedorList, ArrayList<Double> costosReal) {
+    	
+    	getIdProveedor(option, proveedorList);
+    	calcularTotal(costosReal);
+    	java.util.Date myDate = new java.util.Date();
+    	java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+    	
+    	Compra nuevaCompra = new Compra();
+    	nuevaCompra.setIdproveedor(idProveedor);
+    	nuevaCompra.setFecha(sqlDate);
+    	nuevaCompra.setTotal(totalReal);
+    	
+    	compraService.create(nuevaCompra);
+    	nuevaCompra.setId(compraService.last().getId()); 
+        compraList.add(nuevaCompra);
+    	//Insertar a tabla listacompra
+    	
+    	FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Compra a "+ option + " registrada - Total: " + totalReal));
+    	
+    	resetFormulario();
+    }
+    
+	public void resetFormulario() {
+    	this.cantidad = "0";
+    	cantidadList.clear();
+    	this.totalReal = 0.0;
+    	this.idProveedor = 0;
+    }
+	
+	public void getIdProveedor(String option, List<Proveedor> proveedorList ) {
+		for(int i= 0; i < proveedorList.size(); i++ ) {
+			if(proveedorList.get(i).getNombre().equals(option)) {
+				idProveedor = proveedorList.get(i).getId();
+			}
+		}
+	}
+	
+	public void calcularTotal(ArrayList<Double> costosReal) {
+		
+		for(int i = 0; i < costosReal.size(); i++) {
+			totalReal += Integer.parseInt(cantidadList.get(i)) * costosReal.get(i);
+		}
 	}
 }
