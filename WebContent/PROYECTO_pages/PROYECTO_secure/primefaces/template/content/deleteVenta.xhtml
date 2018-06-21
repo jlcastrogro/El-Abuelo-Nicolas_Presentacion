@@ -25,20 +25,32 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="venta" var="ven" value="#{ventaBean.getVentaList()}"
-				editable="false" style="margin-bottom:20px">
+				editable="false" widgetVar="deleteventaTab" rowKey="#{ven.id}"
+				resizableColumns="true" selectionMode="single">
+				
+				<p:ajax event="rowSelect" listener="#{ventaBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{ventaBean.onRowUnselect}"
+					update=":form:msgs" />
+				
 				<f:facet name="header">
 					Ventas
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter" onkeyup="PF('deleteventaTab').filter()"
+							style="width:150px" placeholder="" />
+					</p:outputPanel>
 				</f:facet>
-				<p:column headerText="Id" style="width:50px">
+				<p:column headerText="Id" sortBy="#{ven.id}" filterBy="#{ven.id}">
 					<h:outputText value="#{ven.id}" />
 				</p:column>
-				<p:column headerText="Id Cliente">
-					<h:outputText value="#{ven.idcliente}" />
+				<p:column headerText="Cliente" sortBy="#{ven.nombre}" filterBy="#{ven.nombre}">
+					<h:outputText value="#{ven.nombre}" />
 				</p:column>
-				<p:column headerText="Fecha">
+				<p:column headerText="Fecha" sortBy="#{ven.fecha}" filterBy="#{ven.fecha}">
 					<h:outputText value="#{ven.fecha}" />
 				</p:column>
-				<p:column headerText="Precio Total">
+				<p:column headerText="Precio Total" sortBy="#{ven.total}" filterBy="#{ven.total}">
 					<h:outputText value="#{ven.total}" />
 				</p:column>
 				<p:column>

@@ -28,89 +28,46 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="clientes" var="cli"
-				value="#{clienteBean.getClienteList()}" editable="true"
-				style="margin-bottom:20px">
-				<f:facet name="header">
-				Clientes
-			</f:facet>
+				value="#{clienteBean.getClienteList()}" editable="false"
+				widgetVar="updateclienteTab" rowKey="#{cli.id}"
+				resizableColumns="true" selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{clienteBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect" listener="#{clienteBean.onRowUnselect}"
+					update=":form:msgs" />
+
 				<p:ajax event="rowEdit" listener="#{clienteBean.onRowEdit}"
 					update=":form:msgs" />
 				<p:ajax event="rowEditCancel" listener="#{clienteBean.onRowCancel}"
 					update=":form:msgs" />
 
-				<p:column headerText="Id">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cli.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="clienteInput" value="#{cli.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+				<f:facet name="header">
+					Actualizar Clientes
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter" onkeyup="PF('updateclienteTab').filter()" style="width:150px" placeholder="" />
+					</p:outputPanel>
+				</f:facet>
+
+				<p:column headerText="Id" sortBy="#{cli.id}" filterBy="#{cli.id}">
+					<h:outputText value="#{cli.id}" />
 				</p:column>
-
-				<p:column headerText="Nombre">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cli.nombre}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{cli.nombre}" style="width:100%"
-								label="Nombre" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Nombre" sortBy="#{cli.nombre}" filterBy="#{cli.nombre}">
+					<h:outputText value="#{cli.nombre}" />
 				</p:column>
-
-				
-
-				<p:column headerText="Contacto">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cli.contacto}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{cli.contacto}" style="width:100%"
-								label="Contacto" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Contacto" sortBy="#{cli.contacto}" filterBy="#{cli.contacto}">
+					<h:outputText value="#{cli.contacto}" />
 				</p:column>
-
-				<p:column headerText="Teléfono">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cli.telefono}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{cli.telefono}" style="width:100%"
-								label="Telefono" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Teléfono" sortBy="#{cli.telefono}" filterBy="#{cli.telefono}">
+					<h:outputText value="#{cli.telefono}" />
 				</p:column>
-
-				<p:column headerText="Email">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cli.email}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{cli.email}" style="width:100%"
-								label="Email" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Email" sortBy="#{cli.email}" filterBy="#{cli.email}">
+					<h:outputText value="#{cli.email}" />
 				</p:column>
-
-				<p:column headerText="RFC">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{cli.rfc}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{cli.rfc}" style="width:100%" label="RFC" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="RFC" sortBy="#{cli.rfc}" filterBy="#{cli.rfc}">
+					<h:outputText value="#{cli.rfc}" />
 				</p:column>
-
 				<p:column style="width:32px">
 					<p:rowEditor />
 				</p:column>

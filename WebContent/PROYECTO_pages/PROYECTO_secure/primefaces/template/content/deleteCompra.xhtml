@@ -13,7 +13,7 @@
 	<ui:define name="content">
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
-			<ui:param name="titulo" value="Compra"></ui:param>
+			<ui:param name="titulo" value="Compras"></ui:param>
 			<ui:param name="descripcion"
 				value="Seleccionar en la lista desplegable el id del registro a borrar y 
 				después hacer clic en Borrar." />
@@ -26,23 +26,31 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="compra" var="compr"
 				value="#{compraBean.getCompraList()}" editable="false"
-				style="margin-bottom:20px">
+				widgetVar="deletecompraTab" rowKey="#{compr.id}"
+				resizableColumns="true" selectionMode="single">
+				
+				<p:ajax event="rowSelect" listener="#{compraBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect"
+					listener="#{compraBean.onRowUnselect}" update=":form:msgs" />
+					
 				<f:facet name="header">
 					Compra
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter" onkeyup="PF('deletecompraTab').filter()" style="width:150px" placeholder="" />
+					</p:outputPanel>
 				</f:facet>
-				<p:column headerText="Id" style="width:50px">
+				<p:column headerText="Id" sortBy="#{compr.id}" filterBy="#{compr.id}">
 					<h:outputText value="#{compr.id}" />
 				</p:column>
-
-				<p:column headerText="Id Proveedor">
-					<h:outputText value="#{compr.idproveedor}" />
+				<p:column headerText="Proveedor" sortBy="#{compr.nombre}" filterBy="#{compr.nombre}">
+					<h:outputText value="#{compr.nombre}" />
 				</p:column>
-
-				<p:column headerText="Fecha">
+				<p:column headerText="Fecha" sortBy="#{compr.fecha}" filterBy="#{compr.fecha}">
 					<h:outputText value="#{compr.fecha}" />
 				</p:column>
-
-				<p:column headerText="Precio Total">
+				<p:column headerText="Precio Total" sortBy="#{compr.total}" filterBy="#{compr.total}">
 					<h:outputText value="#{compr.total}" />
 				</p:column>
 				<p:column>

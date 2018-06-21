@@ -14,7 +14,8 @@
 		<ui:include
 			src="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/control.xhtml">
 			<ui:param name="titulo" value="Productos" />
-			<ui:param name="descripcion" value="Para realizar la actualización de un registro, en la última columna de la derecha, hacer clic sobre 
+			<ui:param name="descripcion"
+				value="Para realizar la actualización de un registro, en la última columna de la derecha, hacer clic sobre 
 				el ícono de lápiz para editar. Al finalizar la edición, regresar a la última columna de la derecha y hacer 
 				clic sobre el ícono de aceptar." />
 			<ui:param name="archivoA" value='updateProducto.xhtml' />
@@ -26,74 +27,51 @@
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="productos" var="prod"
 				value="#{productoBean.getProductoList()}" editable="true"
-				style="margin-bottom:20px">
+				widgetVar="updateproductoTab" rowKey="#{prod.id}"
+				resizableColumns="true" selectionMode="single">
+
+				<p:ajax event="rowSelect" listener="#{productoBean.onRowSelect}"
+					update=":form:msgs" />
+				<p:ajax event="rowUnselect"
+					listener="#{productorBean.onRowUnselect}" update=":form:msgs" />
+
 				<f:facet name="header">
-				Productos
-			</f:facet>
-				<p:ajax event="rowEdit" listener="#{productoBean.onRowEdit}"
-					update=":form:msgs" />
-				<p:ajax event="rowEditCancel" listener="#{productoBean.onRowCancel}"
-					update=":form:msgs" />
-
-				<p:column headerText="Id">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText id="productoInput" value="#{prod.id}"
-								style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
+					Productos
+					<p:outputPanel>
+						<h:outputText value="Busqueda general:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('updateproductoTab').filter()" style="width:150px"
+							placeholder="" />
+					</p:outputPanel>
+				</f:facet>
+				<p:column headerText="Id" sortBy="#{prod.id}" filterBy="#{prod.id}">
+					<h:outputText value="#{prod.id}" />
 				</p:column>
 
-				<p:column headerText="Tipo">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.tipo}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.tipo}" style="width:100%" label="Tipo" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Tipo" sortBy="#{prod.tipo}"
+					filterBy="#{prod.tipo}">
+					<h:outputText value="#{prod.tipo}" />
 				</p:column>
 
-				<p:column headerText="Marca">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.marca}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.marca}" style="width:100%"
-								label="Marca" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Marca" sortBy="#{prod.marca}"
+					filterBy="#{prod.marca}">
+					<h:outputText value="#{prod.marca}" />
+				</p:column>
+        
+				<p:column headerText="Costo de Compra" sortBy="#{prod.costocompra}"
+					filterBy="#{prod.costocompra}">
+					<h:outputText value="#{prod.costocompra}" />
+				</p:column>
+				
+				<p:column headerText="Costo de Venta" sortBy="#{prod.costoventa}"
+					filterBy="#{prod.costoventa}">
+					<h:outputText value="#{prod.costoventa}" />
 				</p:column>
 
-				<p:column headerText="Costo">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.costo}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.costo}" style="width:100%"
-								label="Costo" />
-						</f:facet>
-					</p:cellEditor>
+				<p:column headerText="Existencia" sortBy="#{prod.existencia}"
+					filterBy="#{prod.existencia}">
+					<h:outputText value="#{prod.existencia}" />
 				</p:column>
-
-				<p:column headerText="Existencia">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{prod.existencia}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{prod.existencia}" style="width:100%"
-								label="Existencia" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
 				<p:column style="width:32px">
 					<p:rowEditor />
 				</p:column>
