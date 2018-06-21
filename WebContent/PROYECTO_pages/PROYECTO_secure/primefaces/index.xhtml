@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition
 	template="/PROYECTO_pages/PROYECTO_secure/primefaces/template/common/layout.xhtml">
@@ -16,8 +17,93 @@
 			</ui:param>
 			<ui:param name="visibleC" value="none" />
 			<ui:param name="visibleA" value="none" />
-			<ui:param name="visibleE" value="none" />
+			<ui:param name="visibleE" value="none" />			
 		</ui:include>
+		<div id="contenido">
+            <div class="container" id="destacado">
+                <div class="row" id="cartas">
+                    <div class="col" id="compras"><i class="fa fa-shopping-cart"></i>
+                        <h1>Compras</h1>
+                        <p>Compras realizadas</p>
+                    </div>
+                    <div class="col" id="ventas"><i class="fa fa-money"></i>
+                        <h1>Ventas</h1>
+                        <p>Ventas realizadas</p>
+                    </div>
+                    <div class="col" id="productos"><i class="fa fa-soccer-ball-o"></i>
+                        <h1>Productos</h1>
+                        <p>Productos más vendidos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Productos y Ventas</h4>
+                        <div>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Pedidos recientes</a></li>
+                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Más vendidos</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                    <div class="table-responsive">
+                                        <h:form id="form">
+											<p:growl id="msgs" showDetail="true" />
+												<p:dataTable id="listaventa" var="lisven"
+													value="#{listaventaBean.getBest()}" editable="false" resizableColumns="true">
+													<p:column headerText="Tipo" >
+														<h:outputText value="#{lisven.tipo}" />
+													</p:column>
+													<p:column headerText="Marca">
+														<h:outputText value="#{lisven.marca}" />
+													</p:column>
+													<p:column headerText="Total" >
+														<h:outputText value="#{lisven.cantidad}" />
+													</p:column>
+												</p:dataTable>
+										</h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="team">
+                <div>
+                    <h1>Team</h1><img /><p>Presentamos al equipo de trabajo que dedico todo su tiempo, esfuerzo, corazón y alma,<br/> sacrifico muchas horas de fiesta, varios capitulos de sus series favoritas, <br/> varias transmisiones de partidos de futbol <br/> para entregar el proyecto en tiempo y forma.</p></div>
+                <div class="row">
+                    <div class="col"><img />
+                        <h1>Jose Luis</h1>
+                        <p>Programador</p>
+                        <p></p>
+                    </div>
+                    <div class="col"><img />
+                        <h1>Jose Jaime</h1>
+                        <p>Programador</p>
+                        <p></p>
+                    </div>
+                    <div class="col"><img />
+                        <h1>Jerzain</h1>
+                        <p>Programador</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col"><img />
+                        <h1>Rene</h1>
+                        <p>Scrum Master</p>
+                        <p>Encargado de que el equipo siempre estuviera trabajando.</p>
+                    </div>
+                    <div class="col"><img />
+                        <h1>Irving</h1>
+                        <p>Experto en Usabilidad</p>
+                        <p>Encargado de revisar que el proyecto sea lo más usable posible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</ui:define>
 </ui:composition>
 </html>

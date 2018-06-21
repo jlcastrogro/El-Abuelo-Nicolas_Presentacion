@@ -94,4 +94,11 @@ public class ListaventaBean {
 	public void setFilteredListaventa(List<Listaventa> filteredListaven) {
 		this.filteredLisven = filteredListaven;
 	}
+	
+	public List<Listaventa> getBest() {
+		if (listaventasList == null)
+			setListaventaList(listaventasService.best());
+
+		return listaventasList;
+	}
 }

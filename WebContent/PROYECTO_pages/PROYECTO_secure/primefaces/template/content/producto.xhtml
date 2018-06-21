@@ -54,9 +54,14 @@
 					<h:outputText value="#{prod.marca}" />
 				</p:column>
 
-				<p:column headerText="Costo" sortBy="#{prod.costo}"
-					filterBy="#{prod.costo}">
-					<h:outputText value="#{prod.costo}" />
+				<p:column headerText="Costo Compra" sortBy="#{prod.costocompra}"
+					filterBy="#{prod.costocompra}">
+					<h:outputText value="#{prod.costocompra}" />
+				</p:column>
+				
+				<p:column headerText="Costo Venta" sortBy="#{prod.costoventa}"
+					filterBy="#{prod.costoventa}">
+					<h:outputText value="#{prod.costoventa}" />
 				</p:column>
 
 				<p:column headerText="Existencia" sortBy="#{prod.existencia}"
