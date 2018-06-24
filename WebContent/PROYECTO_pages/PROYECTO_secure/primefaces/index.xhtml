@@ -50,18 +50,7 @@
                                     <div class="table-responsive">
                                         <h:form id="form">
 											<p:growl id="msgs" showDetail="true" />
-												<p:dataTable id="listaventa" var="lisven"
-													value="#{listaventaBean.getBest()}" editable="false" resizableColumns="true">
-													<p:column headerText="Tipo" >
-														<h:outputText value="#{lisven.tipo}" />
-													</p:column>
-													<p:column headerText="Marca">
-														<h:outputText value="#{lisven.marca}" />
-													</p:column>
-													<p:column headerText="Total" >
-														<h:outputText value="#{lisven.cantidad}" />
-													</p:column>
-												</p:dataTable>
+
 										</h:form>
                                     </div>
                                 </div>

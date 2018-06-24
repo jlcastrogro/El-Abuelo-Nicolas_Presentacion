@@ -49,7 +49,7 @@
 				</h:panelGroup>	
 				
 			</h:panelGrid>
-			<p:commandButton value="Registrar" actionListener="#{compraBean.save(proveedorBean.getProveedorList(), productoBean.costosReal)}" icon="ui-icon-check" update="panel">
+			<p:commandButton value="Registrar" actionListener="#{compraBean.save(proveedorBean.getProveedorList(), productoBean.costosReal, productoBean.getProductoList(), listacompraBean.getListacompraList())}" icon="ui-icon-check" update="panel">
 				<p:resetInput target="panel" />
 			</p:commandButton>
 		</p:panel>
