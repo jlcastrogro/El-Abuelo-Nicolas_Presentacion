@@ -48,7 +48,7 @@
 				</h:panelGroup>	
 				
 			</h:panelGrid>
-			<p:commandButton value="Registrar" actionListener="#{ventaBean.save(clienteBean.getClienteList(), productoBean.costos, productoBean.costosReal)}" icon="ui-icon-check" update="panel">
+			<p:commandButton value="Registrar" actionListener="#{ventaBean.save(clienteBean.getClienteList(), productoBean.costos, productoBean.costosReal, productoBean.getProductoList(), listaventaBean.getListaventaList())}" icon="ui-icon-check" update="panel">
 				<p:resetInput target="panel" />
 			</p:commandButton>
 		</p:panel>
