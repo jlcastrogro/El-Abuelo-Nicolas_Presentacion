@@ -49,16 +49,16 @@
                                     <div class="table-responsive">
                                         <h:form id="form">
 											<p:growl id="msgs" showDetail="true" />
-												<p:dataTable id="listaventa" var="lisve"
+												<p:dataTable id="listaventa" var="lv"
 													value="#{listaventaBean.getBest()}" editable="false" resizableColumns="true">
 													<p:column headerText="Tipo" >
-														<h:outputText value="#{lisve.tipo}" />
+														<h:outputText value="#{lv.tipo}" />
 													</p:column>
 													<p:column headerText="Marca">
-														<h:outputText value="#{lisve.marca}" />
+														<h:outputText value="#{lv.marca}" />
 													</p:column>
 													<p:column headerText="Total" >
-														<h:outputText value="#{lisve.cantidad}" />
+														<h:outputText value="#{lv.cantidad}" />
 													</p:column>
 												</p:dataTable>
 										</h:form>
