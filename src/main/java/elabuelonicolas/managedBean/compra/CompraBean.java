@@ -14,10 +14,8 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import elabuelonicolas.bd.domain.Cliente;
 import elabuelonicolas.bd.domain.Compra;
 import elabuelonicolas.bd.domain.Proveedor;
-import elabuelonicolas.bd.domain.Venta;
 import elabuelonicolas.service.compra.CompraService;
 
 @Named

@@ -42,24 +42,23 @@
                         <h4 class="card-title">Productos y Ventas</h4>
                         <div>
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Pedidos recientes</a></li>
-                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Más vendidos</a></li>
+                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-1">Más vendidos</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" role="tabpanel" id="tab-1">
                                     <div class="table-responsive">
                                         <h:form id="form">
 											<p:growl id="msgs" showDetail="true" />
-												<p:dataTable id="listaventa" var="lisven"
+												<p:dataTable id="listaventa" var="lv"
 													value="#{listaventaBean.getBest()}" editable="false" resizableColumns="true">
 													<p:column headerText="Tipo" >
-														<h:outputText value="#{lisven.tipo}" />
+														<h:outputText value="#{lv.tipo}" />
 													</p:column>
 													<p:column headerText="Marca">
-														<h:outputText value="#{lisven.marca}" />
+														<h:outputText value="#{lv.marca}" />
 													</p:column>
 													<p:column headerText="Total" >
-														<h:outputText value="#{lisven.cantidad}" />
+														<h:outputText value="#{lv.cantidad}" />
 													</p:column>
 												</p:dataTable>
 										</h:form>
