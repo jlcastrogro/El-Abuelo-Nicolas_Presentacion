@@ -69,15 +69,8 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				<p:column headerText="Fecha" sortBy="#{ven.fecha}" filterBy="#{ven.fecha}">
-					<p:cellEditor>
-						<f:facet name="output">
+				<p:column headerText="Fecha" sortBy="#{ven.fecha}" filterBy="#{ven.fecha}">					
 							<h:outputText value="#{ven.fecha}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{ven.fecha}" label="Fecha"/>
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Precio Total" sortBy="#{ven.total}" filterBy="#{ven.total}">

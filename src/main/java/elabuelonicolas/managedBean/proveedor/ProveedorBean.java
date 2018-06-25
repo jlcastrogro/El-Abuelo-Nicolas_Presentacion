@@ -6,6 +6,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 
@@ -59,15 +61,15 @@ public class ProveedorBean {
 		System.out.println("Datos proveedorEdit: " + proveedor.getId());
 		proveedorService.update(proveedor);
 
-		FacesMessage msg = new FacesMessage("Proveedor editado", proveedor.getId()
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Proveedor editado", proveedor.getNombre()
 				.toString());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		RequestContext.getCurrentInstance().showMessageInDialog(msg);
 	}
 
 	public void onRowCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Edición cancelada",
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Edición cancelada",
 				((Proveedor) event.getObject()).getId().toString());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		RequestContext.getCurrentInstance().showMessageInDialog(msg);
 	}
 
 	public void onCellEdit(CellEditEvent event) {
@@ -78,7 +80,7 @@ public class ProveedorBean {
 
 		if (newValue != null && !newValue.equals(oldValue)) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Proveedor modificado", "Antes: " + oldValue + ", Ahora: "+ newValue);
-			FacesContext.getCurrentInstance().addMessage(null, msg);
+			RequestContext.getCurrentInstance().showMessageInDialog(msg);
 		}
 	}
 	

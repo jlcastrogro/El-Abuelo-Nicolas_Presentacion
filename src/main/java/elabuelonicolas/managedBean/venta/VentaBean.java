@@ -9,6 +9,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -58,15 +60,15 @@ public class VentaBean {
 		System.out.println("Datos de Venta: " + ventas.getId());
 		ventasService.update(ventas);
 
-		FacesMessage msg = new FacesMessage("Venta editada", ventas.getId()
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Venta editada", ventas.getId()
 				.toString());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		RequestContext.getCurrentInstance().showMessageInDialog(msg);
 	}
 
 	public void onRowCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Edición cancelada",
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Edición cancelada",
 				((Venta) event.getObject()).getId().toString());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		RequestContext.getCurrentInstance().showMessageInDialog(msg);
 	}
 
 	public void onCellEdit(CellEditEvent event) {
@@ -77,7 +79,7 @@ public class VentaBean {
 
 		if (newValue != null && !newValue.equals(oldValue)) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Venta modificada", "Antes: " + oldValue + ", Ahora: "+ newValue);
-			FacesContext.getCurrentInstance().addMessage(null, msg);
+			RequestContext.getCurrentInstance().showMessageInDialog(msg);
 		}
 	}
 	
