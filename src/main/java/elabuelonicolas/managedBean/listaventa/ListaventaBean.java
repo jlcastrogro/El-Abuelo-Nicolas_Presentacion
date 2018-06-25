@@ -21,7 +21,7 @@ import elabuelonicolas.service.listaventa.ListaventaService;
 public class ListaventaBean {
 	@Inject
 	ListaventaService listaventasService;
-	private List<Listaventa> listaventasList;
+	List<Listaventa> listaventasList;
 	private List<Listaventa> filteredLisven;
 	
 	@PostConstruct
@@ -94,12 +94,11 @@ public class ListaventaBean {
 	public void setFilteredListaventa(List<Listaventa> filteredListaven) {
 		this.filteredLisven = filteredListaven;
 	}
-	
+
 	public List<Listaventa> getBest() {
 		if (listaventasList == null) 
 			setListaventaList(listaventasService.best());
 
 		return listaventasList;
 	}
-	
 }

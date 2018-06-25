@@ -31,7 +31,7 @@ public class ProductoBean {
     private ArrayList<Double> costos;
     private ArrayList<Double> costosReal;
     private ArrayList<Integer> ids;
-
+    
 	public List<Producto> getProductoList() {
 		if (productoList == null)
 			setProductoList(productoService.findAll());

@@ -15,14 +15,22 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import elabuelonicolas.bd.domain.Compra;
+import elabuelonicolas.bd.domain.Listacompra;
+import elabuelonicolas.bd.domain.Producto;
 import elabuelonicolas.bd.domain.Proveedor;
 import elabuelonicolas.service.compra.CompraService;
+import elabuelonicolas.service.listacompra.ListacompraService;
+import elabuelonicolas.service.producto.ProductoService;
 
 @Named
 @ViewScoped
 public class CompraBean {
 	@Inject
 	CompraService compraService;
+	@Inject
+	ProductoService productoService;
+	@Inject
+	ListacompraService listacomprasService;
 	private List<Compra> compraList;
 	private List<Compra> filteredComp;
 	
@@ -132,7 +140,7 @@ public class CompraBean {
         cantidadList.add(cantidad);
     }
     
-    public void save(List<Proveedor> proveedorList, ArrayList<Double> costosReal) {
+    public void save(List<Proveedor> proveedorList, ArrayList<Double> costosReal, List<Producto> productoList, List<Listacompra> listacomprasList) {
     	
     	getIdProveedor(option, proveedorList);
     	calcularTotal(costosReal);
@@ -146,8 +154,12 @@ public class CompraBean {
     	
     	compraService.create(nuevaCompra);
     	nuevaCompra.setId(compraService.last().getId()); 
+    	nuevaCompra.setNombre(option);
         compraList.add(nuevaCompra);
+        
+        actualizarCantidad(productoList);
     	//Insertar a tabla listacompra
+        insertarListacompra(compraService.last().getId(), productoList, cantidadList, costosReal, listacomprasList);
     	
     	FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Compra a "+ option + " registrada - Total: " + totalReal));
@@ -162,6 +174,15 @@ public class CompraBean {
     	this.idProveedor = 0;
     }
 	
+	public void actualizarCantidad(List<Producto> productoList) {
+		
+		for(int i = 0; i < productoList.size(); i++) {
+			int nuevaExistencia = productoList.get(i).getExistencia() + Integer.parseInt(cantidadList.get(i));
+			productoService.updateExistencia(productoList.get(i).getId(), nuevaExistencia);
+			productoList.get(i).setExistencia(nuevaExistencia);
+		}
+	}
+	
 	public void getIdProveedor(String option, List<Proveedor> proveedorList ) {
 		for(int i= 0; i < proveedorList.size(); i++ ) {
 			if(proveedorList.get(i).getNombre().equals(option)) {
@@ -174,6 +195,30 @@ public class CompraBean {
 		
 		for(int i = 0; i < costosReal.size(); i++) {
 			totalReal += Integer.parseInt(cantidadList.get(i)) * costosReal.get(i);
+		}
+	}
+	
+	public void insertarListacompra(int idCompra, List<Producto> productoList, ArrayList<String> cantidadList, ArrayList<Double> costosReal, List<Listacompra> listacomprasList) {
+		double subtotal = 0.0;
+		
+		for(int i = 0; i < productoList.size(); i++) {
+		
+			if( !cantidadList.get(i).equals("0")) {
+				Listacompra nuevaListacompra = new Listacompra();
+			
+				nuevaListacompra.setIdcompra(idCompra);
+				nuevaListacompra.setIdproducto(productoList.get(i).getId());
+				nuevaListacompra.setCantidad( Integer.parseInt(cantidadList.get(i)) );
+				subtotal = Integer.parseInt(cantidadList.get(i)) * costosReal.get(i);
+				nuevaListacompra.setSubtotal(subtotal);
+				
+				listacomprasService.create(nuevaListacompra);
+				
+				nuevaListacompra.setId(listacomprasService.last().getId()); 
+				nuevaListacompra.setTipo(productoList.get(i).getTipo());
+				nuevaListacompra.setMarca(productoList.get(i).getMarca());
+				listacomprasList.add(nuevaListacompra);
+			}
 		}
 	}
 }

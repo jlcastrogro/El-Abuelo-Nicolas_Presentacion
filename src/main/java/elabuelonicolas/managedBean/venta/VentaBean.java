@@ -15,7 +15,11 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import elabuelonicolas.bd.domain.Cliente;
+import elabuelonicolas.bd.domain.Listaventa;
+import elabuelonicolas.bd.domain.Producto;
 import elabuelonicolas.bd.domain.Venta;
+import elabuelonicolas.service.listaventa.ListaventaService;
+import elabuelonicolas.service.producto.ProductoService;
 import elabuelonicolas.service.venta.VentaService;
 
 @Named
@@ -23,9 +27,13 @@ import elabuelonicolas.service.venta.VentaService;
 public class VentaBean {
 	@Inject
 	VentaService ventasService;
+	@Inject
+	ProductoService productoService;
+	@Inject
+	ListaventaService listaventasService;
 	private List<Venta> ventasList;
 	private List<Venta> filteredVen;
-	
+		
 	private ArrayList<String> cantidadList = new ArrayList<String>();
 	private int idCliente;
 	private String cantidad = "0";
@@ -33,7 +41,6 @@ public class VentaBean {
 	private double totalReal = 0.0;
 	private double ganancia;
 	
-
 	@PostConstruct
 	public List<Venta> getVentaList() {
 		if (ventasList == null)
@@ -135,7 +142,7 @@ public class VentaBean {
         cantidadList.add(cantidad);
     }
     
-    public void save(List<Cliente> clienteList, ArrayList<Double> costos, ArrayList<Double> costosReal) {
+    public void save(List<Cliente> clienteList, ArrayList<Double> costos, ArrayList<Double> costosReal, List<Producto> productoList, List<Listaventa> listaventasList) {
     	
     	getIdCliente(option, clienteList);
     	calcularTotal(costos, costosReal);
@@ -152,9 +159,13 @@ public class VentaBean {
     	
     	ventasService.create(nuevaVenta);
     	nuevaVenta.setId(ventasService.last().getId()); 
+    	nuevaVenta.setNombre(option);
         ventasList.add(nuevaVenta);
-    	//Insertar a tabla listaventa
     	
+        actualizarCantidad(productoList);
+		//Insertar a tabla listaventa
+        insertarListaventa(ventasService.last().getId(), productoList, cantidadList, costos, costosReal, listaventasList);
+         
     	FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Venta a "+ option + " registrada - Total: " + total));
     	
@@ -169,6 +180,15 @@ public class VentaBean {
     	this.ganancia = 0.0;
     	this.idCliente = 0;
     }
+	
+	public void actualizarCantidad(List<Producto> productoList) {
+				
+		for(int i = 0; i < productoList.size(); i++) {
+			int nuevaExistencia = productoList.get(i).getExistencia() - Integer.parseInt(cantidadList.get(i));
+			productoService.updateExistencia(productoList.get(i).getId(), nuevaExistencia);
+			productoList.get(i).setExistencia(nuevaExistencia);
+		}
+	}
 	
 	public void getIdCliente(String option, List<Cliente> clienteList ) {
 		for(int i= 0; i < clienteList.size(); i++ ) {
@@ -186,5 +206,35 @@ public class VentaBean {
 		}
 		
 		ganancia = total - totalReal;
+	}
+	
+	public void insertarListaventa(int idVenta, List<Producto> productoList, ArrayList<String> cantidadList, ArrayList<Double> costos, ArrayList<Double> costosReal, List<Listaventa> listaventasList) {
+		double subtotal = 0.0;
+		double subtotalReal = 0.0;
+		double ganancia = 0.0;
+		
+		for(int i = 0; i < productoList.size(); i++) {
+		
+			if( !cantidadList.get(i).equals("0")) {
+				Listaventa nuevaListaventa = new Listaventa();
+			
+				nuevaListaventa.setIdventa(idVenta);
+				nuevaListaventa.setIdproducto(productoList.get(i).getId());
+				nuevaListaventa.setCantidad( Integer.parseInt(cantidadList.get(i)) );
+				subtotal = Integer.parseInt(cantidadList.get(i)) * costos.get(i);
+				subtotalReal = Integer.parseInt(cantidadList.get(i)) * costosReal.get(i);
+				ganancia = subtotal -subtotalReal;
+				nuevaListaventa.setSubtotal(subtotal);
+				nuevaListaventa.setSubtotalreal(subtotalReal);
+				nuevaListaventa.setGanancia(ganancia);
+				
+				listaventasService.create(nuevaListaventa);
+				
+				nuevaListaventa.setId(listaventasService.last().getId()); 
+				nuevaListaventa.setTipo(productoList.get(i).getTipo());
+				nuevaListaventa.setMarca(productoList.get(i).getMarca());
+				listaventasList.add(nuevaListaventa);
+			}
+		}
 	}
 }
