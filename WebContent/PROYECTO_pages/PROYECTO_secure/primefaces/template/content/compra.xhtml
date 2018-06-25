@@ -18,6 +18,7 @@
 			<ui:param name="archivoC" value='createCompra.xhtml' />
 			<ui:param name="archivoA" value='updateCompra.xhtml' />
 			<ui:param name="archivoE" value='deleteCompra.xhtml' />
+			<ui:param name="visibleA" value="none" />
 		</ui:include>
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
@@ -26,7 +27,7 @@
 				widgetVar="compraTab" rowKey="#{compr.id}"
 				resizableColumns="true" selectionMode="single">
 				
-				<p:ajax event="rowSelect" listener="#{compra.onRowSelect}"
+				<p:ajax event="rowSelect" listener="#{compraBean.onRowSelect}"
 					update=":form:msgs" />
 				<p:ajax event="rowUnselect"
 					listener="#{compraBean.onRowUnselect}" update=":form:msgs" />

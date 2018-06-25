@@ -66,14 +66,7 @@
 					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Fecha" sortBy="#{compr.fecha}" filterBy="#{compr.fecha}">
-					<p:cellEditor>
-						<f:facet name="output">
 							<h:outputText value="#{compr.fecha}" />
-						</f:facet>
-						<f:facet name="input">
-							<h:inputText value="#{compr.fecha}" label="Fecha"/>
-						</f:facet>
-					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Precio Total" sortBy="#{compr.total}" filterBy="#{compr.total}">
 					<p:cellEditor>

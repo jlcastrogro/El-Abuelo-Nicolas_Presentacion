@@ -9,6 +9,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -56,9 +58,8 @@ public class CompraBean {
 		System.out.println("Datos de Compra: " + compras.getId());
 		compraService.update(compras);
 
-		FacesMessage msg = new FacesMessage("Compra editada", compras.getId()
-				.toString());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Compra editada", compras.getId().toString());
+		RequestContext.getCurrentInstance().showMessageInDialog(msg);
 	}
 
 	public void onRowCancel(RowEditEvent event) {
@@ -75,7 +76,7 @@ public class CompraBean {
 
 		if (newValue != null && !newValue.equals(oldValue)) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Compra modificada", "Antes: " + oldValue + ", Ahora: "+ newValue);
-			FacesContext.getCurrentInstance().addMessage(null, msg);
+			RequestContext.getCurrentInstance().showMessageInDialog(msg);
 		}
 	}
 	
@@ -161,7 +162,7 @@ public class CompraBean {
     	//Insertar a tabla listacompra
         insertarListacompra(compraService.last().getId(), productoList, cantidadList, costosReal, listacomprasList);
     	
-    	FacesContext.getCurrentInstance().addMessage(null,
+        RequestContext.getCurrentInstance().showMessageInDialog(
                 new FacesMessage("Compra a "+ option + " registrada - Total: " + totalReal));
     	
     	resetFormulario();
