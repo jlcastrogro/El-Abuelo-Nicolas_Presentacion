@@ -26,7 +26,7 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			<p:dataTable id="compra" var="compr"
-				value="#{compraBean.getCompraList()}" editable="false"
+				value="#{compraBean.getCompraList()}" editable="true"
 				widgetVar="updatecompraTab" rowKey="#{compr.id}"
 				resizableColumns="true" selectionMode="single">
 				
@@ -34,6 +34,9 @@
 					update=":form:msgs" />
 				<p:ajax event="rowUnselect"
 					listener="#{compraBean.onRowUnselect}" update=":form:msgs" />
+				
+				<p:ajax event="rowEdit" listener="#{compraBean.onRowEdit}" update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{compraBean.onRowCancel}" update=":form:msgs" />
 				
 				<f:facet name="header">
 					Compra
@@ -43,16 +46,44 @@
 					</p:outputPanel>
 				</f:facet>
 				<p:column headerText="Id" sortBy="#{compr.id}" filterBy="#{compr.id}">
-					<h:outputText value="#{compr.id}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{compr.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText id="compraInput" value="#{compr.id}" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
-				<p:column headerText="Proveedor" sortBy="#{compr.nombre}" filterBy="#{compr.nombre}">
-					<h:outputText value="#{compr.nombre}" />
+				<p:column headerText="Id Proveedor" sortBy="#{compr.idproveedor}" filterBy="#{compr.idproveedor}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{compr.idproveedor}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{compr.idproveedor}" label="Id Proveedor"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Fecha" sortBy="#{compr.fecha}" filterBy="#{compr.fecha}">
-					<h:outputText value="#{compr.fecha}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{compr.fecha}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{compr.fecha}" label="Fecha"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Precio Total" sortBy="#{compr.total}" filterBy="#{compr.total}">
-					<h:outputText value="#{compr.total}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{compr.total}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{compr.total}" label="Total"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column style="width:32px">
 					<p:rowEditor />
