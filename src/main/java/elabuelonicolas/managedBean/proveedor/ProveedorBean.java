@@ -13,7 +13,6 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import elabuelonicolas.bd.domain.Proveedor;
-import elabuelonicolas.bd.domain.Proveedor;
 import elabuelonicolas.service.proveedor.ProveedorService;
 
 import javax.annotation.PostConstruct;
