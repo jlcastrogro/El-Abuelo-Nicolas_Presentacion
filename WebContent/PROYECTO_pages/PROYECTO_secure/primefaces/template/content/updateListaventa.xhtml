@@ -34,6 +34,9 @@
 					update=":form:msgs" />
 				<p:ajax event="rowUnselect"
 					listener="#{listaventaBean.onRowUnselect}" update=":form:msgs" />
+					
+				<p:ajax event="rowEdit" listener="#{listaventaBean.onRowEdit}" update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{listaventaBean.onRowCancel}" update=":form:msgs" />
 
 				<f:facet name="header">
 					Lista de Ventas
@@ -45,22 +48,62 @@
 					</p:outputPanel>
 				</f:facet>
 				<p:column headerText="Id" sortBy="#{lisven.id}" filterBy="#{lisven.id}">
-					<h:outputText value="#{lisven.id}" />
+					<f:facet name="output">
+						<h:outputText value="#{lisven.id}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText id="listaventaInput" value="#{lisven.id}" style="width:100%" />
+					</f:facet>
 				</p:column>
 				<p:column headerText="Id Venta" sortBy="#{lisven.idventa}" filterBy="#{lisven.idventa}">
-					<h:outputText value="#{lisven.idventa}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{lisven.idventa}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{lisven.idventa}" label="Id Venta"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Producto" sortBy="#{lisven.tipo}" filterBy="#{lisven.tipo}">
-					<h:outputText value="#{lisven.tipo}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{lisven.tipo}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{lisven.tipo}" label="Tipo"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Marca" sortBy="#{lisven.marca}" filterBy="#{lisven.marca}">
-					<h:outputText value="#{lisven.marca}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{lisven.marca}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{lisven.marca}" label="Marca"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Cantidad" sortBy="#{lisven.cantidad}" filterBy="#{lisven.cantidad}">
-					<h:outputText value="#{lisven.cantidad}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{lisven.cantidad}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{lisven.cantidad}" label="Cantidad"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Subtotal" sortBy="#{lisven.subtotal}" filterBy="#{lisven.subtotal}">
-					<h:outputText value="#{lisven.subtotal}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{lisven.subtotal}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{lisven.subtotal}" label="Subtotal"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column style="width:32px">
 					<p:rowEditor />

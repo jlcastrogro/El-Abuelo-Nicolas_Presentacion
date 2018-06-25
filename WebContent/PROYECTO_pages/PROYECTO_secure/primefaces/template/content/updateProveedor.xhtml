@@ -32,6 +32,9 @@
 				
 				<p:ajax event="rowSelect" listener="#{proveedorBean.onRowSelect}" update=":form:msgs" />
 				<p:ajax event="rowUnselect" listener="#{proveedorBean.onRowUnselect}" update=":form:msgs" />
+				
+				<p:ajax event="rowEdit" listener="#{proveedorBean.onRowEdit}" update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{proveedorBean.onRowCancel}" update=":form:msgs" />
 
 				<f:facet name="header">
 					Proveedores
@@ -41,22 +44,64 @@
 					</p:outputPanel>
 				</f:facet>
 				<p:column headerText="Id" sortBy="#{prov.id}" filterBy="#{prov.id}">
-					<h:outputText value="#{prov.id}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prov.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText id="proveedorInput" value="#{prov.id}" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Nombre" sortBy="#{prov.nombre}" filterBy="#{prov.nombre}">
-					<h:outputText value="#{prov.nombre}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prov.nombre}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{prov.nombre}" label="Nombre"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Contacto" sortBy="#{prov.contacto}" filterBy="#{prov.contacto}">
-					<h:outputText value="#{prov.contacto}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prov.contacto}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{prov.contacto}" label="Contacto"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Teléfono" sortBy="#{prov.telefono}" filterBy="#{prov.telefono}">
-					<h:outputText value="#{prov.telefono}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prov.telefono}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{prov.telefono}" label="Telefono"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Email" sortBy="#{prov.email}" filterBy="#{prov.email}">
-					<h:outputText value="#{prov.email}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prov.email}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{prov.email}" label="Email"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="RFC" sortBy="#{prov.rfc}" filterBy="#{prov.rfc}">
-					<h:outputText value="#{prov.rfc}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prov.rfc}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{prov.rfc}" label="RFC"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column style="width:32px">
 					<p:rowEditor />

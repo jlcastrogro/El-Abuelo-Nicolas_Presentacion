@@ -33,6 +33,11 @@
 					update=":form:msgs" />
 				<p:ajax event="rowUnselect" listener="#{ventaBean.onRowUnselect}"
 					update=":form:msgs" />
+					
+				<p:ajax event="rowEdit" listener="#{ventaBean.onRowEdit}"
+					update=":form:msgs" />
+				<p:ajax event="rowEditCancel" listener="#{ventaBean.onRowCancel}"
+					update=":form:msgs" />
 
 				<f:facet name="header">
 					Ventas
@@ -45,18 +50,47 @@
 				</f:facet>
 
 				<p:column headerText="Id" sortBy="#{ven.id}" filterBy="#{ven.id}">
-					<h:outputText value="#{ven.id}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.id}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText id="ventaInput" value="#{ven.id}" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
-				<p:column headerText="Cliente" sortBy="#{ven.nombre}" filterBy="#{ven.nombre}">
-					<h:outputText value="#{ven.nombre}" />
+				<p:column headerText="Id Cliente" sortBy="#{ven.idcliente}" filterBy="#{ven.idcliente}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.idcliente}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{ven.idcliente}" label="Id Cliente"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="Fecha" sortBy="#{ven.fecha}" filterBy="#{ven.fecha}">
-					<h:outputText value="#{ven.fecha}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.fecha}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{ven.fecha}" label="Fecha"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Precio Total" sortBy="#{ven.total}" filterBy="#{ven.total}">
-					<h:outputText value="#{ven.total}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{ven.total}" />
+						</f:facet>
+						<f:facet name="input">
+							<h:inputText value="#{ven.total}" label="Total"/>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
+				
 
 				<p:column style="width:32px">
 					<p:rowEditor />
