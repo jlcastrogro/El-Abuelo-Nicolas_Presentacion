@@ -96,7 +96,7 @@ public class ListaventaBean {
 	}
 	
 	public List<Listaventa> getBest() {
-		if (listaventasList == null)
+		if (listaventasList == null) 
 			setListaventaList(listaventasService.best());
 
 		return listaventasList;
